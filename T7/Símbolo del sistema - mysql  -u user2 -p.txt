@@ -1,0 +1,467 @@
+Microsoft Windows [Versión 10.0.22631.3296]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>mysql -u user2 -p
+Enter password: *
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sakila
+Database changed
+mysql> select actor_id, last_name FROM actor;
++----------+--------------+
+| actor_id | last_name    |
++----------+--------------+
+|       58 | AKROYD       |
+|       92 | AKROYD       |
+|      182 | AKROYD       |
+|      118 | ALLEN        |
+|      145 | ALLEN        |
+|      194 | ALLEN        |
+|       76 | ASTAIRE      |
+|      112 | BACALL       |
+|       67 | BAILEY       |
+|      190 | BAILEY       |
+|      115 | BALE         |
+|      187 | BALL         |
+|       47 | BARRYMORE    |
+|      158 | BASINGER     |
+|      124 | BENING       |
+|      174 | BENING       |
+|       14 | BERGEN       |
+|      121 | BERGMAN      |
+|       12 | BERRY        |
+|       60 | BERRY        |
+|       91 | BERRY        |
+|      189 | BIRCH        |
+|       25 | BLOOM        |
+|       37 | BOLGER       |
+|      185 | BOLGER       |
+|       98 | BRIDGES      |
+|       39 | BRODY        |
+|      159 | BRODY        |
+|      167 | BULLOCK      |
+|       11 | CAGE         |
+|       40 | CAGE         |
+|      181 | CARREY       |
+|       86 | CHAPLIN      |
+|        3 | CHASE        |
+|      176 | CHASE        |
+|      183 | CLOSE        |
+|       16 | COSTNER      |
+|       26 | CRAWFORD     |
+|      129 | CRAWFORD     |
+|       49 | CRONYN       |
+|      104 | CRONYN       |
+|      105 | CROWE        |
+|       57 | CRUISE       |
+|       80 | CRUZ         |
+|       81 | DAMON        |
+|        4 | DAVIS        |
+|      101 | DAVIS        |
+|      110 | DAVIS        |
+|       48 | DAY-LEWIS    |
+|       35 | DEAN         |
+|      143 | DEAN         |
+|      138 | DEE          |
+|      148 | DEE          |
+|       41 | DEGENERES    |
+|      107 | DEGENERES    |
+|      166 | DEGENERES    |
+|       89 | DENCH        |
+|      123 | DENCH        |
+|      100 | DEPP         |
+|      160 | DEPP         |
+|      109 | DERN         |
+|      173 | DREYFUSS     |
+|       36 | DUKAKIS      |
+|      188 | DUKAKIS      |
+|      106 | DUNST        |
+|       19 | FAWCETT      |
+|      199 | FAWCETT      |
+|       10 | GABLE        |
+|      127 | GARLAND      |
+|      165 | GARLAND      |
+|      184 | GARLAND      |
+|      154 | GIBSON       |
+|       46 | GOLDBERG     |
+|      139 | GOODING      |
+|      191 | GOODING      |
+|       71 | GRANT        |
+|        1 | GUINESS      |
+|       90 | GUINESS      |
+|      179 | GUINESS      |
+|       32 | HACKMAN      |
+|      175 | HACKMAN      |
+|       56 | HARRIS       |
+|      141 | HARRIS       |
+|      152 | HARRIS       |
+|       97 | HAWKE        |
+|      151 | HESTON       |
+|       28 | HOFFMAN      |
+|       79 | HOFFMAN      |
+|      169 | HOFFMAN      |
+|      161 | HOPE         |
+|       50 | HOPKINS      |
+|      113 | HOPKINS      |
+|      134 | HOPKINS      |
+|      132 | HOPPER       |
+|      170 | HOPPER       |
+|       65 | HUDSON       |
+|       52 | HUNT         |
+|      140 | HURT         |
+|      119 | JACKMAN      |
+|      131 | JACKMAN      |
+|        8 | JOHANSSON    |
+|       64 | JOHANSSON    |
+|      146 | JOHANSSON    |
+|       82 | JOLIE        |
+|       43 | JOVOVICH     |
+|       74 | KEITEL       |
+|      130 | KEITEL       |
+|      198 | KEITEL       |
+|       23 | KILMER       |
+|       45 | KILMER       |
+|       55 | KILMER       |
+|      153 | KILMER       |
+|      162 | KILMER       |
+|      103 | LEIGH        |
+|        5 | LOLLOBRIGIDA |
+|      157 | MALDEN       |
+|      136 | MANSFIELD    |
+|       22 | MARX         |
+|       70 | MCCONAUGHEY  |
+|       77 | MCCONAUGHEY  |
+|      114 | MCDORMAND    |
+|       38 | MCKELLEN     |
+|      177 | MCKELLEN     |
+|       27 | MCQUEEN      |
+|      128 | MCQUEEN      |
+|       42 | MIRANDA      |
+|      120 | MONROE       |
+|      178 | MONROE       |
+|        7 | MOSTEL       |
+|       99 | MOSTEL       |
+|       61 | NEESON       |
+|       62 | NEESON       |
+|        6 | NICHOLSON    |
+|      108 | NOLTE        |
+|      122 | NOLTE        |
+|      125 | NOLTE        |
+|      150 | NOLTE        |
+|       15 | OLIVIER      |
+|       34 | OLIVIER      |
+|       21 | PALTROW      |
+|       69 | PALTROW      |
+|       30 | PECK         |
+|       33 | PECK         |
+|       87 | PECK         |
+|       73 | PENN         |
+|      133 | PENN         |
+|      201 | pepon        |
+|       88 | PESCI        |
+|      171 | PFEIFFER     |
+|       51 | PHOENIX      |
+|       54 | PINKETT      |
+|       84 | PITT         |
+|       75 | POSEY        |
+|       93 | PRESLEY      |
+|      135 | REYNOLDS     |
+|      142 | RYDER        |
+|      180 | SILVERSTONE  |
+|      195 | SILVERSTONE  |
+|       78 | SINATRA      |
+|       31 | SOBIESKI     |
+|       44 | STALLONE     |
+|       24 | STREEP       |
+|      116 | STREEP       |
+|      192 | SUVARI       |
+|        9 | SWANK        |
+|       66 | TANDY        |
+|      155 | TANDY        |
+|       59 | TAUTOU       |
+|       53 | TEMPLE       |
+|      149 | TEMPLE       |
+|      193 | TEMPLE       |
+|      200 | TEMPLE       |
+|      126 | TOMEI        |
+|       18 | TORN         |
+|       94 | TORN         |
+|      102 | TORN         |
+|       20 | TRACY        |
+|      117 | TRACY        |
+|       17 | VOIGHT       |
+|        2 | WAHLBERG     |
+|       95 | WAHLBERG     |
+|      196 | WALKEN       |
+|       29 | WAYNE        |
+|      163 | WEST         |
+|      197 | WEST         |
+|       72 | WILLIAMS     |
+|      137 | WILLIAMS     |
+|      172 | WILLIAMS     |
+|       83 | WILLIS       |
+|       96 | WILLIS       |
+|      164 | WILLIS       |
+|      168 | WILSON       |
+|       68 | WINSLET      |
+|      147 | WINSLET      |
+|      144 | WITHERSPOON  |
+|       13 | WOOD         |
+|      156 | WOOD         |
+|       63 | WRAY         |
+|       85 | ZELLWEGER    |
+|      111 | ZELLWEGER    |
+|      186 | ZELLWEGER    |
++----------+--------------+
+201 rows in set (0.01 sec)
+
+mysql> UPDATE actor
+    -> SET last_name = 'Prueba2'
+    -> WHERE actor_id = 201;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select actor_id, last_name FROM actor;
++----------+--------------+
+| actor_id | last_name    |
++----------+--------------+
+|       58 | AKROYD       |
+|       92 | AKROYD       |
+|      182 | AKROYD       |
+|      118 | ALLEN        |
+|      145 | ALLEN        |
+|      194 | ALLEN        |
+|       76 | ASTAIRE      |
+|      112 | BACALL       |
+|       67 | BAILEY       |
+|      190 | BAILEY       |
+|      115 | BALE         |
+|      187 | BALL         |
+|       47 | BARRYMORE    |
+|      158 | BASINGER     |
+|      124 | BENING       |
+|      174 | BENING       |
+|       14 | BERGEN       |
+|      121 | BERGMAN      |
+|       12 | BERRY        |
+|       60 | BERRY        |
+|       91 | BERRY        |
+|      189 | BIRCH        |
+|       25 | BLOOM        |
+|       37 | BOLGER       |
+|      185 | BOLGER       |
+|       98 | BRIDGES      |
+|       39 | BRODY        |
+|      159 | BRODY        |
+|      167 | BULLOCK      |
+|       11 | CAGE         |
+|       40 | CAGE         |
+|      181 | CARREY       |
+|       86 | CHAPLIN      |
+|        3 | CHASE        |
+|      176 | CHASE        |
+|      183 | CLOSE        |
+|       16 | COSTNER      |
+|       26 | CRAWFORD     |
+|      129 | CRAWFORD     |
+|       49 | CRONYN       |
+|      104 | CRONYN       |
+|      105 | CROWE        |
+|       57 | CRUISE       |
+|       80 | CRUZ         |
+|       81 | DAMON        |
+|        4 | DAVIS        |
+|      101 | DAVIS        |
+|      110 | DAVIS        |
+|       48 | DAY-LEWIS    |
+|       35 | DEAN         |
+|      143 | DEAN         |
+|      138 | DEE          |
+|      148 | DEE          |
+|       41 | DEGENERES    |
+|      107 | DEGENERES    |
+|      166 | DEGENERES    |
+|       89 | DENCH        |
+|      123 | DENCH        |
+|      100 | DEPP         |
+|      160 | DEPP         |
+|      109 | DERN         |
+|      173 | DREYFUSS     |
+|       36 | DUKAKIS      |
+|      188 | DUKAKIS      |
+|      106 | DUNST        |
+|       19 | FAWCETT      |
+|      199 | FAWCETT      |
+|       10 | GABLE        |
+|      127 | GARLAND      |
+|      165 | GARLAND      |
+|      184 | GARLAND      |
+|      154 | GIBSON       |
+|       46 | GOLDBERG     |
+|      139 | GOODING      |
+|      191 | GOODING      |
+|       71 | GRANT        |
+|        1 | GUINESS      |
+|       90 | GUINESS      |
+|      179 | GUINESS      |
+|       32 | HACKMAN      |
+|      175 | HACKMAN      |
+|       56 | HARRIS       |
+|      141 | HARRIS       |
+|      152 | HARRIS       |
+|       97 | HAWKE        |
+|      151 | HESTON       |
+|       28 | HOFFMAN      |
+|       79 | HOFFMAN      |
+|      169 | HOFFMAN      |
+|      161 | HOPE         |
+|       50 | HOPKINS      |
+|      113 | HOPKINS      |
+|      134 | HOPKINS      |
+|      132 | HOPPER       |
+|      170 | HOPPER       |
+|       65 | HUDSON       |
+|       52 | HUNT         |
+|      140 | HURT         |
+|      119 | JACKMAN      |
+|      131 | JACKMAN      |
+|        8 | JOHANSSON    |
+|       64 | JOHANSSON    |
+|      146 | JOHANSSON    |
+|       82 | JOLIE        |
+|       43 | JOVOVICH     |
+|       74 | KEITEL       |
+|      130 | KEITEL       |
+|      198 | KEITEL       |
+|       23 | KILMER       |
+|       45 | KILMER       |
+|       55 | KILMER       |
+|      153 | KILMER       |
+|      162 | KILMER       |
+|      103 | LEIGH        |
+|        5 | LOLLOBRIGIDA |
+|      157 | MALDEN       |
+|      136 | MANSFIELD    |
+|       22 | MARX         |
+|       70 | MCCONAUGHEY  |
+|       77 | MCCONAUGHEY  |
+|      114 | MCDORMAND    |
+|       38 | MCKELLEN     |
+|      177 | MCKELLEN     |
+|       27 | MCQUEEN      |
+|      128 | MCQUEEN      |
+|       42 | MIRANDA      |
+|      120 | MONROE       |
+|      178 | MONROE       |
+|        7 | MOSTEL       |
+|       99 | MOSTEL       |
+|       61 | NEESON       |
+|       62 | NEESON       |
+|        6 | NICHOLSON    |
+|      108 | NOLTE        |
+|      122 | NOLTE        |
+|      125 | NOLTE        |
+|      150 | NOLTE        |
+|       15 | OLIVIER      |
+|       34 | OLIVIER      |
+|       21 | PALTROW      |
+|       69 | PALTROW      |
+|       30 | PECK         |
+|       33 | PECK         |
+|       87 | PECK         |
+|       73 | PENN         |
+|      133 | PENN         |
+|       88 | PESCI        |
+|      171 | PFEIFFER     |
+|       51 | PHOENIX      |
+|       54 | PINKETT      |
+|       84 | PITT         |
+|       75 | POSEY        |
+|       93 | PRESLEY      |
+|      201 | Prueba2      |
+|      135 | REYNOLDS     |
+|      142 | RYDER        |
+|      180 | SILVERSTONE  |
+|      195 | SILVERSTONE  |
+|       78 | SINATRA      |
+|       31 | SOBIESKI     |
+|       44 | STALLONE     |
+|       24 | STREEP       |
+|      116 | STREEP       |
+|      192 | SUVARI       |
+|        9 | SWANK        |
+|       66 | TANDY        |
+|      155 | TANDY        |
+|       59 | TAUTOU       |
+|       53 | TEMPLE       |
+|      149 | TEMPLE       |
+|      193 | TEMPLE       |
+|      200 | TEMPLE       |
+|      126 | TOMEI        |
+|       18 | TORN         |
+|       94 | TORN         |
+|      102 | TORN         |
+|       20 | TRACY        |
+|      117 | TRACY        |
+|       17 | VOIGHT       |
+|        2 | WAHLBERG     |
+|       95 | WAHLBERG     |
+|      196 | WALKEN       |
+|       29 | WAYNE        |
+|      163 | WEST         |
+|      197 | WEST         |
+|       72 | WILLIAMS     |
+|      137 | WILLIAMS     |
+|      172 | WILLIAMS     |
+|       83 | WILLIS       |
+|       96 | WILLIS       |
+|      164 | WILLIS       |
+|      168 | WILSON       |
+|       68 | WINSLET      |
+|      147 | WINSLET      |
+|      144 | WITHERSPOON  |
+|       13 | WOOD         |
+|      156 | WOOD         |
+|       63 | WRAY         |
+|       85 | ZELLWEGER    |
+|      111 | ZELLWEGER    |
+|      186 | ZELLWEGER    |
++----------+--------------+
+201 rows in set (0.00 sec)
+
+mysql> exit
+Bye
+
+C:\Users\alons>mysql -u user2 -p
+Enter password: *
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 17
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> SELECT CURRENT_ROLE();
++----------------+
+| CURRENT_ROLE() |
++----------------+
+| `lector`@`%`   |
++----------------+
+1 row in set (0.00 sec)
+
+mysql>

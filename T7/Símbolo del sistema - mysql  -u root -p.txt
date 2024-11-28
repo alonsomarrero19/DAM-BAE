@@ -1,0 +1,394 @@
+Microsoft Windows [Versión 10.0.22631.3296]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE USER 'Prueba'@'localhost' IDENTIFY BY 'Prueba';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IDENTIFY BY 'Prueba'' at line 1
+mysql> CREATE USER "Prueba"@"localhost" IDENTIFIED BY "Prueba";
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> SELECT user, host FROM mysql.user;
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| Prueba           | localhost |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
++------------------+-----------+
+5 rows in set (0.01 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| controlt6          |
+| controltema5       |
+| exament4           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| prueba             |
+| sakila             |
+| sys                |
+| t4p1               |
+| t4p2               |
+| t4p2.1             |
+| t4p2.2             |
+| t4p2.3             |
+| tema5practica1     |
+| tema5practica2     |
+| tema5practica3     |
+| tema5practica4     |
+| tema6practica1     |
+| tema6practica2     |
+| tema6practica3     |
+| test               |
+| testeo             |
+| world              |
++--------------------+
+24 rows in set (0.00 sec)
+
+mysql> CREATE USER "Prueba" IDENTIFIED BY "Prueba";
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SELECT user, host FROM mysql.user;
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| Prueba           | %         |
+| Prueba           | localhost |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
++------------------+-----------+
+6 rows in set (0.00 sec)
+
+mysql> drop user Prueba;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT user, host FROM mysql.user;
++------------------+-----------+
+| user             | host      |
++------------------+-----------+
+| Prueba           | localhost |
+| mysql.infoschema | localhost |
+| mysql.session    | localhost |
+| mysql.sys        | localhost |
+| root             | localhost |
++------------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER USER 'Prueba'@'localhost' ACCOUNT LOCK;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT user, account_locked FROM mysql.user;
++------------------+----------------+
+| user             | account_locked |
++------------------+----------------+
+| Prueba           | Y              |
+| mysql.infoschema | Y              |
+| mysql.session    | Y              |
+| mysql.sys        | Y              |
+| root             | N              |
++------------------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> ALTER USER 'Prueba'@'localhost' ACCOUNT UNLOCK;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SET PASSWORD FOR 'Prueba'@'localhost' = 'hola';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> ALTER USER 'Prueba'@'localhost' IDENTIFIED BY '1';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT u.user, d.db, d.host FROM mysql.user u
+    -> INNER JOIN mysql.db d
+    -> USING(user);
++---------------+--------------------+-----------+
+| user          | db                 | host      |
++---------------+--------------------+-----------+
+| mysql.session | performance_schema | localhost |
+| mysql.sys     | sys                | localhost |
++---------------+--------------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT current_user();
++----------------+
+| current_user() |
++----------------+
+| root@localhost |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> show grants;
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for root@localhost
+
+
+
+
+
+
+                                                     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, SHUTDOWN, PROCESS, FILE, REFERENCES, INDEX, ALTER, SHOW DATABASES, SUPER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER,CREATE TABLESPACE, CREATE ROLE, DROP ROLE ON *.* TO `root`@`localhost` WITH GRANT OPTION
+
+
+
+                                                     |
+| GRANT APPLICATION_PASSWORD_ADMIN,AUDIT_ABORT_EXEMPT,AUDIT_ADMIN,AUTHENTICATION_POLICY_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTION_ADMIN,CLONE_ADMIN,CONNECTION_ADMIN,ENCRYPTION_KEY_ADMIN,FIREWALL_EXEMPT,FLUSH_OPTIMIZER_COSTS,FLUSH_STATUS,FLUSH_TABLES,FLUSH_USER_RESOURCES,GROUP_REPLICATION_ADMIN,GROUP_REPLICATION_STREAM,INNODB_REDO_LOG_ARCHIVE,INNODB_REDO_LOG_ENABLE,PASSWORDLESS_USER_ADMIN,PERSIST_RO_VARIABLES_ADMIN,REPLICATION_APPLIER,REPLICATION_SLAVE_ADMIN,RESOURCE_GROUP_ADMIN,RESOURCE_GROUP_USER,ROLE_ADMIN,SENSITIVE_VARIABLES_OBSERVER,SERVICE_CONNECTION_ADMIN,SESSION_VARIABLES_ADMIN,SET_USER_ID,SHOW_ROUTINE,SYSTEM_USER,SYSTEM_VARIABLES_ADMIN,TABLE_ENCRYPTION_ADMIN,TELEMETRY_LOG_ADMIN,XA_RECOVER_ADMIN ON *.* TO `root`@`localhost` WITH GRANT OPTION |
+| GRANT PROXY ON ``@`` TO `root`@`localhost` WITH GRANT OPTION
+
+
+
+
+
+
+                                                     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+3 rows in set (0.01 sec)
+
+mysql> SHOW GRANTS FOR CURRENT_USER();
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for root@localhost
+
+
+
+
+
+
+                                                     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, SHUTDOWN, PROCESS, FILE, REFERENCES, INDEX, ALTER, SHOW DATABASES, SUPER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER,CREATE TABLESPACE, CREATE ROLE, DROP ROLE ON *.* TO `root`@`localhost` WITH GRANT OPTION
+
+
+
+                                                     |
+| GRANT APPLICATION_PASSWORD_ADMIN,AUDIT_ABORT_EXEMPT,AUDIT_ADMIN,AUTHENTICATION_POLICY_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTION_ADMIN,CLONE_ADMIN,CONNECTION_ADMIN,ENCRYPTION_KEY_ADMIN,FIREWALL_EXEMPT,FLUSH_OPTIMIZER_COSTS,FLUSH_STATUS,FLUSH_TABLES,FLUSH_USER_RESOURCES,GROUP_REPLICATION_ADMIN,GROUP_REPLICATION_STREAM,INNODB_REDO_LOG_ARCHIVE,INNODB_REDO_LOG_ENABLE,PASSWORDLESS_USER_ADMIN,PERSIST_RO_VARIABLES_ADMIN,REPLICATION_APPLIER,REPLICATION_SLAVE_ADMIN,RESOURCE_GROUP_ADMIN,RESOURCE_GROUP_USER,ROLE_ADMIN,SENSITIVE_VARIABLES_OBSERVER,SERVICE_CONNECTION_ADMIN,SESSION_VARIABLES_ADMIN,SET_USER_ID,SHOW_ROUTINE,SYSTEM_USER,SYSTEM_VARIABLES_ADMIN,TABLE_ENCRYPTION_ADMIN,TELEMETRY_LOG_ADMIN,XA_RECOVER_ADMIN ON *.* TO `root`@`localhost` WITH GRANT OPTION |
+| GRANT PROXY ON ``@`` TO `root`@`localhost` WITH GRANT OPTION
+
+
+
+
+
+                                                     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW GRANTS FOR 'root'@'localhost';
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Grants for root@localhost
+
+
+
+
+
+
+                                                     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, SHUTDOWN, PROCESS, FILE, REFERENCES, INDEX, ALTER, SHOW DATABASES, SUPER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER,CREATE TABLESPACE, CREATE ROLE, DROP ROLE ON *.* TO `root`@`localhost` WITH GRANT OPTION
+
+
+
+                                                     |
+| GRANT APPLICATION_PASSWORD_ADMIN,AUDIT_ABORT_EXEMPT,AUDIT_ADMIN,AUTHENTICATION_POLICY_ADMIN,BACKUP_ADMIN,BINLOG_ADMIN,BINLOG_ENCRYPTION_ADMIN,CLONE_ADMIN,CONNECTION_ADMIN,ENCRYPTION_KEY_ADMIN,FIREWALL_EXEMPT,FLUSH_OPTIMIZER_COSTS,FLUSH_STATUS,FLUSH_TABLES,FLUSH_USER_RESOURCES,GROUP_REPLICATION_ADMIN,GROUP_REPLICATION_STREAM,INNODB_REDO_LOG_ARCHIVE,INNODB_REDO_LOG_ENABLE,PASSWORDLESS_USER_ADMIN,PERSIST_RO_VARIABLES_ADMIN,REPLICATION_APPLIER,REPLICATION_SLAVE_ADMIN,RESOURCE_GROUP_ADMIN,RESOURCE_GROUP_USER,ROLE_ADMIN,SENSITIVE_VARIABLES_OBSERVER,SERVICE_CONNECTION_ADMIN,SESSION_VARIABLES_ADMIN,SET_USER_ID,SHOW_ROUTINE,SYSTEM_USER,SYSTEM_VARIABLES_ADMIN,TABLE_ENCRYPTION_ADMIN,TELEMETRY_LOG_ADMIN,XA_RECOVER_ADMIN ON *.* TO `root`@`localhost` WITH GRANT OPTION |
+| GRANT PROXY ON ``@`` TO `root`@`localhost` WITH GRANT OPTION
+
+
+
+
+
+
+                                                     |
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> GRANT ALL ON Sakilla.* TO 'Prueba'@'localhost';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SHOW GRANTS FOR 'Prueba'@'localhost';
++-------------------------------------------------------------+
+| Grants for Prueba@localhost                                 |
++-------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `Prueba`@`localhost`                  |
+| GRANT ALL PRIVILEGES ON `sakilla`.* TO `Prueba`@`localhost` |
++-------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE USER 'user1'@'localhost' INDENTIFIED BY '1';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'INDENTIFIED BY '1'' at line 1
+mysql> CREATE USER 'user1'@'localhost' IDENTiFIED BY '1';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT SELECT ON *.* TO 'user1'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>  Select user, select_priv, insert_priv, update_priv, delete_priv FROM mysql.user;
++------------------+-------------+-------------+-------------+-------------+
+| user             | select_priv | insert_priv | update_priv | delete_priv |
++------------------+-------------+-------------+-------------+-------------+
+| Prueba           | N           | N           | N           | N           |
+| mysql.infoschema | Y           | N           | N           | N           |
+| mysql.session    | N           | N           | N           | N           |
+| mysql.sys        | N           | N           | N           | N           |
+| root             | Y           | Y           | Y           | Y           |
+| user1            | Y           | N           | N           | N           |
++------------------+-------------+-------------+-------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> GRANT UPDATE ON *.* TO 'user1'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>  Select user, select_priv, insert_priv, update_priv, delete_priv FROM mysql.user
+    -> WHERE user = 'user1';
++-------+-------------+-------------+-------------+-------------+
+| user  | select_priv | insert_priv | update_priv | delete_priv |
++-------+-------------+-------------+-------------+-------------+
+| user1 | Y           | N           | Y           | N           |
++-------+-------------+-------------+-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> GRANT SELECT, UPDATE ON *.* TO 'user1'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>  Select user, select_priv, insert_priv, update_priv, delete_priv FROM mysql.user
+    -> WHERE user = 'user1';
++-------+-------------+-------------+-------------+-------------+
+| user  | select_priv | insert_priv | update_priv | delete_priv |
++-------+-------------+-------------+-------------+-------------+
+| user1 | Y           | N           | Y           | N           |
++-------+-------------+-------------+-------------+-------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE USER 'user2'@'localhost' IDENTIFIED BY '2';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> GRANT SELECT(actor_id, last name), UPDATE(actor_id, last name)
+    -> ON sakila.actor TO 'user2'@'localhost';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name), UPDATE(actor_id, last name)
+ON sakila.actor TO 'user2'@'localhost'' at line 1
+mysql> GRANT SELECT(actor_id, last name), UPDATE(actor_id, last name)
+    -> eafasef;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name), UPDATE(actor_id, last name)
+eafasef' at line 1
+mysql> GRANT SELECT(actor_id, last name), UPDATE(last name)
+    -> ON sakila.actor TO 'user2'@'localhost';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'name), UPDATE(last name)
+ON sakila.actor TO 'user2'@'localhost'' at line 1
+mysql> GRANT SELECT(actor_id, last_name), UPDATE(actor_id, last_name)
+    -> ON sakila.actor TO 'user2'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> SHOW GRANTS FOR 'user2'@'localhost';
++---------------------------------------------------------------------------------------------------------------------+
+| Grants for user2@localhost
+                |
++---------------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user2`@`localhost`                |
+| GRANT SELECT (`actor_id`, `last_name`), UPDATE (`actor_id`, `last_name`) ON `sakila`.`actor` TO `user2`@`localhost` |
++---------------------------------------------------------------------------------------------------------------------+
+2 rows in set (0.00 sec)
+
+mysql> REVOKE UPDATE ON sakila.actor FROM `user2`@`localhost`;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE ROLE 'lector', 'developer'@'localhost';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SHOW role;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'role' at line 1
+mysql> show grants for 'lector';
++------------------------------------+
+| Grants for lector@%                |
++------------------------------------+
+| GRANT USAGE ON *.* TO `lector`@`%` |
++------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show grants for 'developer'@'localhost';
++-----------------------------------------------+
+| Grants for developer@localhost                |
++-----------------------------------------------+
+| GRANT USAGE ON *.* TO `developer`@`localhost` |
++-----------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT CURRENT_ROLE
+    -> ;
+ERROR 1054 (42S22): Unknown column 'CURRENT_ROLE' in 'field list'
+mysql> SELECT CURRENT_ROL;
+ERROR 1054 (42S22): Unknown column 'CURRENT_ROL' in 'field list'
+mysql> SELECT CURRENT_ROLE();
++----------------+
+| CURRENT_ROLE() |
++----------------+
+| NONE           |
++----------------+
+1 row in set (0.02 sec)
+
+mysql> GRANT SELECT ON sakila.* TO 'developer'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT SELECT ON sakila.actor TO 'lector';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT lector TO 'user2'@'localhost';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> SHOW GRANTS FOR 'user2'@'localhost';
++-----------------------------------------------------------------------------------+
+| Grants for user2@localhost                                                        |
++-----------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user2`@`localhost`                                         |
+| GRANT SELECT (`actor_id`, `last_name`) ON `sakila`.`actor` TO `user2`@`localhost` |
+| GRANT `lector`@`%` TO `user2`@`localhost`                                         |
++-----------------------------------------------------------------------------------+
+3 rows in set (0.01 sec)
+
+mysql> SHOW GRANTS FOR 'user2'@'localhost' USING 'lector';
++-------------------------------------------------------------------------------------------+
+| Grants for user2@localhost                                                                |
++-------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `user2`@`localhost`                                                 |
+| GRANT SELECT, SELECT (`actor_id`, `last_name`) ON `sakila`.`actor` TO `user2`@`localhost` |
+| GRANT `lector`@`%` TO `user2`@`localhost`                                                 |
++-------------------------------------------------------------------------------------------+
+3 rows in set (0.00 sec)
+
+mysql> SET DEFAULT ROLE 'lector' TO 'user2'@'localhost';
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> drop role lector;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> drop user 'user1'
+    -> ;
+ERROR 1396 (HY000): Operation DROP USER failed for 'user1'@'%'
+mysql> drop user 'user1'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop user 'user2'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> drop user 'Prueba'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql>

@@ -1,0 +1,31 @@
+
+cardinalidad de curso
+	tapamos prefesor y curso
+	cuantas asgnaturas un profe en un curso puede impartir? (0,n)
+cardinalidad de
+	tapamos asignatura y curso
+	cuantos profesores pueden dar docencia en una asignatura en un curso? (1,n)
+cardinalidad de 
+	tapamos profesor y asignatura
+	en cuantos cursos puede dar docencia un profesor y una asignatura? (0,n)
+---------------------------------------------------------------------------------------------
+cardinalidad de articulo
+	tapamos departamento y proveedor
+	cuantos articulos compra un departamento a un proveedor? (0,n)
+cardinalidad de departamento
+	tapamos articulo y proveedor
+	cuandos departamentos compran un articulo a un proveedor? (1,n)
+cardinalidad de proveedor
+	tapamos departamento y articulo
+	a cuantos proveedores un departamento compra un articulo? (1,n)
+---------------------------------------------------------------------------------------------
+cardinalidad de empresa
+	tapamos auditora y expediente
+	cuantas empresas audita una auditora en un exoediente? 
+cardinalidad de auditora
+	tapamos empresa y expediente
+	cuantas auditoras auditan un expediente a una empresa?
+cardinalidad de expediente
+	tapamos empresa y auditora
+	cuantos expedientes audita una auditora en una empresa?
+---------------------------------------------------------------------------------------------

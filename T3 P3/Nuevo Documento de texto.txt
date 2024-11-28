@@ -1,0 +1,40 @@
+--------------------------------------------------------------
+Ejercicio 1
+--------------------------------------------------------------
+Entidades
+- Empleados
+	- Pinche
+	- Cocinero
+- Plato
+- Ingrediente
+- Almacén
+- estante
+--------------------------------------------------------------
+Relacciones
+- Almacen tiene estantes
+- Estante guarda ingredientes
+- Ingredientes forman plato
+- Plato cocinado por Cocinero
+- Cocinero manda a pinche
+--------------------------------------------------------------
+Atributos
+
+--------------------------------------------------------------
+Ejercicio 2
+--------------------------------------------------------------
+Entidades
+- Clientes
+- Trabajadores
+- Immueble
+	- Piso
+	- Local
+	- Garaje
+	- Otros
+
+--------------------------------------------------------------
+Relacciones
+
+--------------------------------------------------------------
+Atributos
+
+--------------------------------------------------------------

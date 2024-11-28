@@ -1,0 +1,186 @@
+Microsoft Windows [Versión 10.0.22631.3235]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sakila
+Database changed
+mysql> Select * from actor
+    -> into outfile 'actor.csv'
+    -> fields terminated by ';'
+    -> lines terminated by '\n\r';
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+mysql> Select * from actor
+    -> into outfile 'C://ProgramData//MySQL//MySQL Server 8.0//Uploads//actor.csv'
+    -> fields terminated by ';'
+    -> lines terminated by '\n\r';
+Query OK, 201 rows affected (0.01 sec)
+
+mysql> exut
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'exut' at line 1
+mysql> exit
+Bye
+
+C:\Users\alons>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database if not exists tema6practica3
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> use tema6practica3
+Database changed
+mysql> show tables
+    -> ;
+Empty set (0.01 sec)
+
+mysql> create table contactos(
+    -> Id INT auto_increment not null primary key,
+    -> Alias VARCHAR(20) not null,
+    -> Nombre VARCHAR(25) not null,
+    -> Apellidos VARCHAR(50) not null,
+    -> DIreccion VARCHAR(60) not null,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 6
+mysql> create table contactos(
+    -> Id INT auto_increment not null primary key,
+    -> Alias VARCHAR(20) not null,
+    -> Nombre VARCHAR(25) not null,
+    -> Apellidos VARCHAR(50) not null,
+    -> Direccion VARCHAR(60) not null,
+    -> Poblacion VARCHAR(25) nto null,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'nto null,' at line 7
+mysql> create table contactos(
+    -> Id INT auto_increment not null primary key,
+    -> Alias VARCHAR(20) not null,
+    -> Nombre VARCHAR(25) not null,
+    -> Apellidos VARCHAR(50) not null,
+    -> Direccion VARCHAR(60) not null,
+    -> Poblacion VARCHAR(25) not null,
+    -> Telefono CHAR(9) not null,
+    -> Movil VARCHAR(15),
+    -> Email VARCHAR(50),
+    -> Observaciones TEXT,
+    -> Sexo ENUM('Hombre','Mujer') not null,
+    -> Nacimiento DATE not null,
+    -> EstadoCivil ENUM('Otros','Separado/a','Soltero/a','Casad0/a','Divorciado/a') not
+ null default Soltero/a,
+    -> Hijos TINYINT unsigned default 0,
+    -> Desempleado BOOLEAN not null,
+    -> Profesion VARCHAR(30),
+    -> Ingresos DECIMAL(6,2) not null default 0,
+    -> Altura FLOAT(3,2) unsigned,
+    -> Cabello VARCHAR(20) not null,
+    -> Ojos VARCHAR(20) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Soltero/a,
+Hijos TINYINT unsigned default 0,
+Desempleado BOOLEAN not null,
+Profe' at line 14
+mysql> create table contactos(
+    -> Id INT auto_increment not null primary key,
+    -> Alias VARCHAR(20) not null,
+    -> Nombre VARCHAR(25) not null,
+    -> Apellidos VARCHAR(50) not null,
+    -> Direccion VARCHAR(60) not null,
+    -> Poblacion VARCHAR(25) not null,
+    -> Telefono CHAR(9) not null,
+    -> Movil VARCHAR(15),
+    -> Email VARCHAR(50),
+    -> Observaciones TEXT,
+    -> Sexo ENUM('Hombre','Mujer') not null,
+    -> Nacimiento DATE not null,
+    -> EstadoCivil ENUM('Otros','Separado/a','Soltero/a','Casad0/a','Divorciado/a') not null default 'Soltero/a',
+    -> Hijos TINYINT unsigned default 0,
+    -> Desempleado BOOLEAN not null,
+    -> Profesion VARCHAR(30),
+    -> Ingresos DECIMAL(6,2) not null default 0,
+    -> Altura FLOAT(3,2) unsigned,
+    -> Cabello VARCHAR(20) not null,
+    -> Ojos VARCHAR(20) not null;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 21
+mysql> create table contactos(
+    -> Id INT auto_increment not null primary key,
+    -> Id INT auto_increment not null primary key,
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 3
+mysql> create table contactos(
+    -> Id INT auto_increment not null primary key,
+    -> Alias VARCHAR(20) not null,
+    -> Nombre VARCHAR(25) not null,
+    -> Apellidos VARCHAR(50) not null,
+    -> Direccion VARCHAR(60) not null,
+    -> Poblacion VARCHAR(25) not null,
+    -> Telefono CHAR(9) not null,
+    -> Movil VARCHAR(15),
+    -> Email VARCHAR(50),
+    -> Observaciones TEXT,
+    -> Sexo ENUM('Hombre','Mujer') not null,
+    -> Nacimiento DATE not null,
+    -> EstadoCivil ENUM('Otros','Separado/a','Soltero/a','Casad0/a','Divorciado/a') not null default 'Soltero/a',
+    -> Hijos TINYINT unsigned default 0,
+    -> Desempleado BOOLEAN not null,
+    -> Profesion VARCHAR(30),
+    -> Ingresos DECIMAL(6,2) not null default 0,
+    -> Altura FLOAT(3,2) unsigned,
+    -> Cabello VARCHAR(20) not null,
+    -> Ojos VARCHAR(20) not null);
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> describe constactos
+    -> ;
+ERROR 1146 (42S02): Table 'tema6practica3.constactos' doesn't exist
+mysql> describe contactos;
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+| Field         | Type                                                             | Null | Key | Default   | Extra          |
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+| Id            | int                                                              | NO   | PRI | NULL      | auto_increment |
+| Alias         | varchar(20)                                                      | NO   |     | NULL      |                |
+| Nombre        | varchar(25)                                                      | NO   |     | NULL      |                |
+| Apellidos     | varchar(50)                                                      | NO   |     | NULL      |                |
+| Direccion     | varchar(60)                                                      | NO   |     | NULL      |                |
+| Poblacion     | varchar(25)                                                      | NO   |     | NULL      |                |
+| Telefono      | char(9)                                                          | NO   |     | NULL      |                |
+| Movil         | varchar(15)                                                      | YES  |     | NULL      |                |
+| Email         | varchar(50)                                                      | YES  |     | NULL      |                |
+| Observaciones | text                                                             | YES  |     | NULL      |                |
+| Sexo          | enum('Hombre','Mujer')                                           | NO   |     | NULL      |                |
+| Nacimiento    | date                                                             | NO   |     | NULL      |                |
+| EstadoCivil   | enum('Otros','Separado/a','Soltero/a','Casad0/a','Divorciado/a') | NO   |     | Soltero/a |                |
+| Hijos         | tinyint unsigned                                                 | YES  |     | 0         |                |
+| Desempleado   | tinyint(1)                                                       | NO   |     | NULL      |                |
+| Profesion     | varchar(30)                                                      | YES  |     | NULL      |                |
+| Ingresos      | decimal(6,2)                                                     | NO   |     | 0.00      |                |
+| Altura        | float(3,2) unsigned                                              | YES  |     | NULL      |                |
+| Cabello       | varchar(20)                                                      | NO   |     | NULL      |                |
+| Ojos          | varchar(20)                                                      | NO
+   |     | NULL      |                |
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+20 rows in set (0.00 sec)
+
+mysql>

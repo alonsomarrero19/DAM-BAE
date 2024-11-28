@@ -1,0 +1,121 @@
+<mxfile host="Electron" modified="2023-11-08T09:34:06.118Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="Isbcn26LdBXfUGi0QKHE" version="22.0.3" type="device">
+  <diagram name="Página-1" id="FAcLt8oisLnMLdrKlRac">
+    <mxGraphModel dx="1091" dy="688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-28" value="Pais" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="400" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-29" value="Bando" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="450" y="400" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-30" value="Guerra" style="whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="730" y="400" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-31" value="pertenece" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-32" value="Participa" style="shape=rhombus;perimeter=rhombusPerimeter;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="590" y="390" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-33" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-28" target="4NeIbpdBp0q2sKqe_ENI-31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="430" as="sourcePoint" />
+            <mxPoint x="370" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-34" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-29" target="4NeIbpdBp0q2sKqe_ENI-32">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="430" as="sourcePoint" />
+            <mxPoint x="540" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-35" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-30" target="4NeIbpdBp0q2sKqe_ENI-32">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="430" as="sourcePoint" />
+            <mxPoint x="540" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-36" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-31" target="4NeIbpdBp0q2sKqe_ENI-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="380" y="430" as="sourcePoint" />
+            <mxPoint x="540" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-42" value="Nombre" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="320" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-43" value="Periodo_Indep." style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="170" y="480" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-44" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-28" target="4NeIbpdBp0q2sKqe_ENI-42">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="430" as="sourcePoint" />
+            <mxPoint x="640" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-45" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-43" target="4NeIbpdBp0q2sKqe_ENI-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="430" as="sourcePoint" />
+            <mxPoint x="640" y="430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-46" value="Año_inicio" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="730" y="320" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-50" value="Año_fin" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="730" y="480" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-51" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-46" target="4NeIbpdBp0q2sKqe_ENI-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="407" as="sourcePoint" />
+            <mxPoint x="650" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-52" value="Fecha_union" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="310" y="480" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-53" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-31" target="4NeIbpdBp0q2sKqe_ENI-52">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="407" as="sourcePoint" />
+            <mxPoint x="650" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-54" value="Fecha_abandono" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="310" y="320" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-58" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-54" target="4NeIbpdBp0q2sKqe_ENI-31">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="490" y="407" as="sourcePoint" />
+            <mxPoint x="650" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-60" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-61" target="4NeIbpdBp0q2sKqe_ENI-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="880.0000000000052" y="420" as="sourcePoint" />
+            <mxPoint x="650" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-61" value="&lt;span style=&quot;border-bottom: 1px dotted&quot;&gt;Nombre_guerra&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="880" y="400" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-63" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1" source="4NeIbpdBp0q2sKqe_ENI-50" target="4NeIbpdBp0q2sKqe_ENI-30">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="510" y="407" as="sourcePoint" />
+            <mxPoint x="670" y="407" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-66" value="Id país" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4;" vertex="1" parent="1">
+          <mxGeometry x="40" y="400" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-67" value="Id bando" style="ellipse;whiteSpace=wrap;html=1;align=center;fontStyle=4;" vertex="1" parent="1">
+          <mxGeometry x="450" y="320" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="4NeIbpdBp0q2sKqe_ENI-68" value="Contendientes" style="ellipse;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="450" y="480" width="100" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

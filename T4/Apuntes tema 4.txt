@@ -1,0 +1,8 @@
+entidad = nombre de la tabla nueva
+atributo multibaluado = tabla nueva enlazada a la tabla principal con una foreign key (FK)
+atributo = columnas
+entrada de datos = filas
+----------------------------------------------------------------------------------------------------------------------------------------
+en caso de atrubuto compuesto me cargo el atributo compuesto y me quedo con los componentes como atributos simples
+el foreign key es siempre el primaty key de la tabla principal
+----------------------------------------------------------------------------------------------------------------------------------------

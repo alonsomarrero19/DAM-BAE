@@ -1,0 +1,29 @@
+SELECT [DISTINCT] select_expr, [select_expr]
+FROM TableName, [TableName]
+[WHERE where_condition]
+[GORUP BY expr, expr, ...]
+[HAVING where_condition]
+[ORDER BY select_expr [ASC, DESC]];
+
+----------------------------
+
+SELECT * FROM Vehiculos; // devuelve todos los campos de la tabla especificada
+
+SELECT matricula, modelo FROM Vehiculos // devuelve las columnas matricula y modelo
+
+SELECT DISTINCT marca FROM Vehiculos; // devuelve una sola vez cada valor de dicha columna
+
+SELECT nombre, precio FROM productos WHERE preicio > 100 // todos los articulos cuyo precio sea mayor que 100
+
+SELECT nombre, precio FROM productos WHERE preicio [NOT] BETWEEN val1 AND val2 // todos los articulos cuyo precio no esté entre val1 y val2
+
+
+------------------------------
+
+SUM(expr) 	// suma de los valores de un campo numerico
+SELECT SUM(salario) [AS] *pago* FROM empleados
+
+average(expr) 	// mediia
+min(expr)	// minimo
+max(expr)	// maximo
+count(expr)	// cuenta el numero de ocurrencia de la expresion 

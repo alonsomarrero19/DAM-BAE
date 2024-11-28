@@ -1,0 +1,22 @@
+mysql -u root -p //inicio de sesion en srvr
+mysql -u root -p --prompt //inicio de sesion en server cambiando el mysql por un nombre dado
+SHOW DATABASES //muestra una lista con todas las bases de datos
+USE Database_Name //entrar en la base de datos
+DROP DATABASE Database_name //eliminacion forzosa 
+DROP DATABASE IF EXISTS Database_name //eliminacion forzosa solo si existe la base de datos
+SHOW CHARACTER SET //listado de sets 
+SHOW CHARACTER SET LIKE 'utf8%'; //listado de sets relaccionados al entrecomillado
+SHOW COLLATION LIKE 'utf8mb4%'; //lista de collation del entrecomillado
+SHOW TABLES //lista de tablas de la database
+SHOW CREATE DATABASE BAE2324 //datos de la database
+DESCRIBE Table_Name //muestra los campos de la tabla "Table_Name"
+CREATE TABLE //crear tabla
+SHOW STORAGE ENGINES //muestra todos los motores de la base de datos 
+ALTER TABLE NombreTabla RENAME NuevoNombre //renombrar tabla
+RENAME TABLE NombreTable TO NombreNuevo //renombrar tabla
+ALTER TABLE NombreTabla ADD [COLUMN] columna datatype // añadir columna
+ALTER TABLE NombreTabla ADD [COLUMN] columna datatype [AFTER] nombrecolumna; //añadir columna tras una concreta
+ALTER TABLE NombreTabla MODIFY [COLUMN] columna newdatatype; //modificar definicion de columna
+ALTER TABLE NombreTabla Drop [COLUMN] columna; //borrar columna
+ALTER TABLE usuarios ALTER Ultimo_sueldo SET DEFAULT 0 //modificar el valor base de la columna
+ALTER TABLE usuarios RENAME COLUMN Ultimo_sueldo TO Sueldo //renombra una columna

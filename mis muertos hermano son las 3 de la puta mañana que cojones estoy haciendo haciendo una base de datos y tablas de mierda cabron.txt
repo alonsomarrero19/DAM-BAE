@@ -1,0 +1,175 @@
+Microsoft Windows [Versión 10.0.22621.2283]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 26
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> prompt Alonso[(\d)]>
+PROMPT set to 'Alonso[(\d)]>'
+Alonso[((none))]>SHOW DATABASES
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| bae2324            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+
+Alonso[((none))]>SHOW CREATE DATABASE sakila
+    -> ;
++----------+----------------------------------------------------------------------------------------------------------------------------------+
+| Database | Create Database                                                                                                                  |
++----------+----------------------------------------------------------------------------------------------------------------------------------+
+| sakila   | CREATE DATABASE `sakila` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */ |
++----------+----------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[((none))]>USE sakila
+Database changed
+Alonso[(sakila)]>SHOW TABLES
+    -> ;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.00 sec)
+
+Alonso[(sakila)]>DESCRIBE customer
+    -> ;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| customer_id | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| store_id    | tinyint unsigned  | NO   | MUL | NULL              |                                               |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| email       | varchar(50)       | YES  |     | NULL              |                                               |
+| address_id  | smallint unsigned | NO   | MUL | NULL              |                                               |
+| active      | tinyint(1)        | NO   |     | 1                 |                                               |
+| create_date | datetime          | NO   |     | NULL              |                                               |
+| last_update | timestamp         | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+9 rows in set (0.01 sec)
+
+Alonso[(sakila)]>SHOW CREATE TABLE customer
+    -> ;
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table
+
+
+
+
+
+
+
+
+
+
+
+                                        |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| customer | CREATE TABLE `customer` (
+  `customer_id` smallint unsigned NOT NULL AUTO_INCREMENT,
+  `store_id` tinyint unsigned NOT NULL,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `address_id` smallint unsigned NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
+  `create_date` datetime NOT NULL,
+  `last_update` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`customer_id`),
+  KEY `idx_fk_store_id` (`store_id`),
+  KEY `idx_fk_address_id` (`address_id`),
+  KEY `idx_last_name` (`last_name`),
+  CONSTRAINT `fk_customer_address` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `fk_customer_store` FOREIGN KEY (`store_id`) REFERENCES `store` (`store_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=600 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++----------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.02 sec)
+
+Alonso[(sakila)]>
+
+
+
+
+                 ;
+ERROR:
+No query specified
+
+Alonso[(sakila)]>CREATE DATABASE Practica1SQL
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+Alonso[(sakila)]>USE practica1sql
+Database changed
+Alonso[(practica1sql)]>SHOW TABLES
+    -> ;
+Empty set (0.00 sec)
+
+Alonso[(practica1sql)]>CREATE TABLE ACTOR(
+    -> Actor_id INT AUTO_INCREMENT PRIMARY KEY,
+    -> Nombre VARCHAR(20),
+    -> Apellidos VARCHAR(45),
+    -> Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -> Saldo FLOAT(6,0)
+    -> );
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+Alonso[(practica1sql)]>SHOW TABLE actor
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'actor' at line 1
+Alonso[(practica1sql)]>DESCRIBE actor
+    -> ;
++-----------+-------------+------+-----+-------------------+-------------------+
+| Field     | Type        | Null | Key | Default           | Extra             |
++-----------+-------------+------+-----+-------------------+-------------------+
+| Actor_id  | int         | NO   | PRI | NULL              | auto_increment    |
+| Nombre    | varchar(20) | YES  |     | NULL              |                   |
+| Apellidos | varchar(45) | YES  |     | NULL              |                   |
+| Fecha     | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| Saldo     | float(6,0)  | YES  |     | NULL              |                   |
++-----------+-------------+------+-----+-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+Alonso[(practica1sql)]>

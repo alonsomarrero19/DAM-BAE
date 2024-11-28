@@ -1,0 +1,250 @@
+Microsoft Windows [Versión 10.0.22631.2715]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database testeo
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| practica1sql       |
+| sakila             |
+| sys                |
+| test               |
+| testeo             |
+| world              |
++--------------------+
+9 rows in set (0.00 sec)
+
+mysql> use testeo
+Database changed
+mysql> CREATE TABLE IF NOT EXIXSTS CLIENTE (
+    ->  COD_cliente             INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->  Nombre          VARCHAR(50) NOT NULL,
+    ->  Telefono                VARCHAR(20),
+    ->  Direccion               VARCHAR(60)
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    ->
+    -> CREATE TABLE IF NOT EXIXSTS ARTICULOS (
+    ->  COD_articulo    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->  Descripcion             VARCHAR(50),
+    ->  Precio                  DOUBLE UNSIGNED,
+    ->  Stock                   INT
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    ->
+    -> CREATE TABLE IF NOT EXIXSTS COMPRAS (
+    ->  COD_cliente             INT NOT NULL,
+    ->  COD_articulo    INT NOT NULL,
+    ->  Unidades                INT NOT NULL,
+    ->  fecha_ventas            DATE NOT NULL,
+    ->  PRIMARY KEY(COD_cliente, COD_articulo),
+    ->  INDEX(COD_cliente),
+    ->  INDEX(COD_articulo),
+    ->  FOREIGN KEY(COD_cliente)
+    ->          REFERENCES CLIENTE(COD_cliente)
+    ->          ON UPDATE CASCADE
+    ->          ON DELETE RESTRICT,
+    ->  FOREIGN KEY(COD_articulo)
+    ->          REFERENCES ARTICULOS(COD_articulo)
+    ->          ON UPDATE CASCADE
+    ->          ON DELETE RESTRICT
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'EXIXSTS CLIENTE (
+        COD_cliente             INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+        Nomb' at line 1
+mysql> CREATE TABLE IF NOT EXISTS CLIENTE (
+    ->  COD_cliente             INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->  Nombre          VARCHAR(50) NOT NULL,
+    ->  Telefono                VARCHAR(20),
+    ->  Direccion               VARCHAR(60)
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    ->
+    -> CREATE TABLE IF NOT EXISTS ARTICULOS (
+    ->  COD_articulo    INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->  Descripcion             VARCHAR(50),
+    ->  Precio                  DOUBLE UNSIGNED,
+    ->  Stock                   INT
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    ->
+    -> CREATE TABLE IF NOT EXISTS COMPRAS (
+    ->  COD_cliente             INT NOT NULL,
+    ->  COD_articulo    INT NOT NULL,
+    ->  Unidades                INT NOT NULL,
+    ->  fecha_ventas            DATE NOT NULL,
+    ->  PRIMARY KEY(COD_cliente, COD_articulo),
+    ->  INDEX(COD_cliente),
+    ->  INDEX(COD_articulo),
+    ->  FOREIGN KEY(COD_cliente)
+    ->          REFERENCES CLIENTE(COD_cliente)
+    ->          ON UPDATE CASCADE
+    ->          ON DELETE RESTRICT,
+    ->  FOREIGN KEY(COD_articulo)
+    ->          REFERENCES ARTICULOS(COD_articulo)
+    ->          ON UPDATE CASCADE
+    ->          ON DELETE RESTRICT
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'CREATE TABLE IF NOT EXISTS ARTICULOS (
+        COD_articulo    INT NOT NULL AUTO_INCREMEN' at line 8
+mysql> CREATE TABLE IF NOT EXISTS CLIENTE (
+    ->  COD_cliente     INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->  Nombre VARCHAR(50) NOT NULL,
+    ->  Telefono VARCHAR(20),
+    ->  Direccion VARCHAR(60)
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    -> ;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables
+    -> ;
++------------------+
+| Tables_in_testeo |
++------------------+
+| cliente          |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS ARTICULOS (
+    ->  COD_articulo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ->  Descripcion             VARCHAR(50),
+    ->  Precio                  DOUBLE UNSIGNED,
+    ->  Stock                   INT
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    -> ;
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS COMPRAS (
+    ->  COD_cliente             INT NOT NULL,
+    ->  COD_articulo    INT NOT NULL,
+    ->  Unidades                INT NOT NULL,
+    ->  fecha_ventas            DATE NOT NULL,
+    ->  PRIMARY KEY(COD_cliente, COD_articulo),
+    ->  INDEX(COD_cliente),
+    ->  INDEX(COD_articulo),
+    ->  FOREIGN KEY(COD_cliente)
+    ->          REFERENCES CLIENTE(COD_cliente)
+    ->          ON UPDATE CASCADE
+    ->          ON DELETE RESTRICT,
+    ->  FOREIGN KEY(COD_articulo)
+    ->          REFERENCES ARTICULOS(COD_articulo)
+    ->          ON UPDATE CASCADE
+    ->          ON DELETE RESTRICT
+    -> ) ENGINE=InnoDB CHARSET=utf8mb4
+    -> ;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables
+    -> ;
++------------------+
+| Tables_in_testeo |
++------------------+
+| articulos        |
+| cliente          |
+| compras          |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> describe cliente
+    -> ;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| COD_cliente | int         | NO   | PRI | NULL    | auto_increment |
+| Nombre      | varchar(50) | NO   |     | NULL    |                |
+| Telefono    | varchar(20) | YES  |     | NULL    |                |
+| Direccion   | varchar(60) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> describe articulos;
++--------------+-----------------+------+-----+---------+----------------+
+| Field        | Type            | Null | Key | Default | Extra          |
++--------------+-----------------+------+-----+---------+----------------+
+| COD_articulo | int             | NO   | PRI | NULL    | auto_increment |
+| Descripcion  | varchar(50)     | YES  |     | NULL    |                |
+| Precio       | double unsigned | YES  |     | NULL    |                |
+| Stock        | int             | YES  |     | NULL    |                |
++--------------+-----------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe compras;
++--------------+------+------+-----+---------+-------+
+| Field        | Type | Null | Key | Default | Extra |
++--------------+------+------+-----+---------+-------+
+| COD_cliente  | int  | NO   | PRI | NULL    |       |
+| COD_articulo | int  | NO   | PRI | NULL    |       |
+| Unidades     | int  | NO   |     | NULL    |       |
+| fecha_ventas | date | NO   |     | NULL    |       |
++--------------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> ALTER TABLE cliente RENAME clientes
+    -> ;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables
+    -> ;
++------------------+
+| Tables_in_testeo |
++------------------+
+| articulos        |
+| clientes         |
+| compras          |
++------------------+
+3 rows in set (0.00 sec)
+
+mysql> describe clientes;
++-------------+-------------+------+-----+---------+----------------+
+| Field       | Type        | Null | Key | Default | Extra          |
++-------------+-------------+------+-----+---------+----------------+
+| COD_cliente | int         | NO   | PRI | NULL    | auto_increment |
+| Nombre      | varchar(50) | NO   |     | NULL    |                |
+| Telefono    | varchar(20) | YES  |     | NULL    |                |
+| Direccion   | varchar(60) | YES  |     | NULL    |                |
++-------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe articulos;
++--------------+-----------------+------+-----+---------+----------------+
+| Field        | Type            | Null | Key | Default | Extra          |
++--------------+-----------------+------+-----+---------+----------------+
+| COD_articulo | int             | NO   | PRI | NULL    | auto_increment |
+| Descripcion  | varchar(50)     | YES  |     | NULL    |                |
+| Precio       | double unsigned | YES  |     | NULL    |                |
+| Stock        | int             | YES  |     | NULL    |                |
++--------------+-----------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> describe compras;
++--------------+------+------+-----+---------+-------+
+| Field        | Type | Null | Key | Default | Extra |
++--------------+------+------+-----+---------+-------+
+| COD_cliente  | int  | NO   | PRI | NULL    |       |
+| COD_articulo | int  | NO   | PRI | NULL    |       |
+| Unidades     | int  | NO   |     | NULL    |       |
+| fecha_ventas | date | NO   |     | NULL    |       |
++--------------+------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql>

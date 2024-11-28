@@ -1,0 +1,11 @@
+Entidades
+	Guerra
+	Bando
+	Pais
+Relacciones
+	Bandos participan en guerra
+	Paises pertenencen a bando
+Atributos
+	Nombre del pais
+	periodo de independencia
+	

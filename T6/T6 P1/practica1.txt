@@ -1,0 +1,257 @@
+
+C:\Users\Alonso>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database tema6practica1
+    -> ;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use database tema6practica1;
+ERROR 1049 (42000): Unknown database 'database'
+mysql> use tema6practica1;
+Database changed
+mysql> show tables
+    -> ;
+Empty set (0.00 sec)
+
+mysql> create table fabricante (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables
+    -> ;
++--------------------------+
+| Tables_in_tema6practica1 |
++--------------------------+
+| fabricante               |
++--------------------------+
+1 row in set (0.00 sec)
+
+mysql> describe fabricante
+    -> ;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| codigo | int unsigned | NO   | PRI | NULL    | auto_increment |
+| nombre | varchar(100) | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into fabricante values(1,'Asus');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(2, 'Lenovo');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(3, 'Hewlett-Packard');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(4, 'Samsung');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(5, 'Seagate');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(6, 'Crucial');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(7, 'Gigabyte');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(8, 'Huawei');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(9, 'Xiaomi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(1, 'Disco duro SATA3 1TB', 86.99, 5);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(2, 'Memoria RAM DDR4 8GB', 120, 6);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(3, 'Disco SSD 1 TB', 150.99, 4);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(4, 'GeForce GTX 1050Ti', 185, 7);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(5, 'GeForce GTX 1080 Xtreme', 755, 6);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(6, 'Monitor 24 LED Full HD', 202, 1);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(7, 'Monitor 27 LED Full HD', 245.99, 1);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(8, 'Portátil Yoga 520', 559, 2);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(9, 'Portátil Ideapd 320', 444, 2);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(10, 'Impresora HP Deskjet 3720', 59.99, 3);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> INSERT INTO producto VALUES(11, 'Impresora HP Laserjet Pro M26nw', 180, 3);
+ERROR 1146 (42S02): Table 'tema6practica1.producto' doesn't exist
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int not null
+    -> contraint cod_fab references fabricante (codigo)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'contraint cod_fab references fabricante (codigo)
+)' at line 6
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int not null
+    -> constraint cod_fab references fabricante (codigo)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'references fabricante (codigo)
+)' at line 6
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int not null
+    -> contraint cod_fab FOREIGN KEY (codigo_fabricante) references fabricante);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'contraint cod_fab FOREIGN KEY (codigo_fabricante) references fabricante)' at line 6
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int not null
+    -> constraint cod_fab FOREIGN KEY (codigo_fabricante) references fabricante);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FOREIGN KEY (codigo_fabricante) references fabricante)' at line 6
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int not null,
+    -> constraint cod_fab FOREIGN KEY (codigo_fabricante) references fabricante);
+ERROR 1239 (42000): Incorrect foreign key definition for 'cod_fab': Key reference and table referencedon't match
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int not null
+    -> ,
+    -> constraint cod_fab FOREIGN KEY (codigo_fabricante) references fabricante (codigo) );
+ERROR 3780 (HY000): Referencing column 'codigo_fabricante' and referenced column 'codigo' in foreign key constraint 'cod_fab' are incompatible.
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int not null
+    -> ,
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 6
+mysql> create table producto (
+    -> codigo int unsigned auto_increment primary key,
+    -> nombre varchar(100) not null,
+    -> precio double not null,
+    -> codigo_fabricante int unsigned not null,
+    -> constraint cod_fab FOREIGN KEY (codigo_fabricante) references fabricante (codigo) );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables
+    -> ;
++--------------------------+
+| Tables_in_tema6practica1 |
++--------------------------+
+| fabricante               |
+| producto                 |
++--------------------------+
+2 rows in set (0.00 sec)
+
+mysql> describe producto
+    -> ;
++-------------------+--------------+------+-----+---------+----------------+
+| Field             | Type         | Null | Key | Default | Extra          |
++-------------------+--------------+------+-----+---------+----------------+
+| codigo            | int unsigned | NO   | PRI | NULL    | auto_increment |
+| nombre            | varchar(100) | NO   |     | NULL    |                |
+| precio            | double       | NO   |     | NULL    |                |
+| codigo_fabricante | int unsigned | NO   | MUL | NULL    |                |
++-------------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(1, 'Disco duro SATA3 1TB', 86.99, 5);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(2, 'Memoria RAM DDR4 8GB', 120, 6);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(3, 'Disco SSD 1 TB', 150.99, 4);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(4, 'GeForce GTX 1050Ti', 185, 7);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(5, 'GeForce GTX 1080 Xtreme', 755, 6);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(6, 'Monitor 24 LED Full HD', 202, 1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(7, 'Monitor 27 LED Full HD', 245.99, 1);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(8, 'Portátil Yoga 520', 559, 2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(9, 'Portátil Ideapd 320', 444, 2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(10, 'Impresora HP Deskjet 3720', 59.99, 3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto VALUES(11, 'Impresora HP Laserjet Pro M26nw', 180, 3);
+Query OK, 1 row affected (0.00 sec)
+
+mysql>
+mysql> Select * from producto
+    -> ;
++--------+---------------------------------+--------+-------------------+
+| codigo | nombre                          | precio | codigo_fabricante |
++--------+---------------------------------+--------+-------------------+
+|      1 | Disco duro SATA3 1TB            |  86.99 |                 5 |
+|      2 | Memoria RAM DDR4 8GB            |    120 |                 6 |
+|      3 | Disco SSD 1 TB                  | 150.99 |                 4 |
+|      4 | GeForce GTX 1050Ti              |    185 |                 7 |
+|      5 | GeForce GTX 1080 Xtreme         |    755 |                 6 |
+|      6 | Monitor 24 LED Full HD          |    202 |                 1 |
+|      7 | Monitor 27 LED Full HD          | 245.99 |                 1 |
+|      8 | Portátil Yoga 520               |    559 |                 2 |
+|      9 | Portátil Ideapd 320             |    444 |                 2 |
+|     10 | Impresora HP Deskjet 3720       |  59.99 |                 3 |
+|     11 | Impresora HP Laserjet Pro M26nw |    180 |                 3 |
++--------+---------------------------------+--------+-------------------+
+11 rows in set (0.00 sec)
+
+mysql> Select * from fabricante;
++--------+-----------------+
+| codigo | nombre          |
++--------+-----------------+
+|      1 | Asus            |
+|      2 | Lenovo          |
+|      3 | Hewlett-Packard |
+|      4 | Samsung         |
+|      5 | Seagate         |
+|      6 | Crucial         |
+|      7 | Gigabyte        |
+|      8 | Huawei          |
+|      9 | Xiaomi          |
++--------+-----------------+
+9 rows in set (0.00 sec)
+
+mysql>

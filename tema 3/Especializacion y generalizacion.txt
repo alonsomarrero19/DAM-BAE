@@ -1,0 +1,9 @@
+Especializacion parcial con solapamiento
+Especializacion total con solapamiento
+Especializacion parcial con exclusividad
+Especializacion total con exclusividad
+
+Total: Una especializacion o generalizacion será total si todo ejemplar de la superclase pertenece a alguna de las subclases
+Parcial: Una generalizacion/espcializacion será parcial si no todos los ejemplares que forman la superclase pertenecen a alguna de las subclases
+Solapamiento: una generalizacion/especializacion presenta solapamiento si un mismo ejemplar de la superclase puede pertenencer a mas de una subclase
+Exclusividad: una generalizacion/especializacion presenta exclusividad si un mismo ejemplar de la superclase pertenece solo a una subclase

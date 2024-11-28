@@ -1,0 +1,179 @@
+Microsoft Windows [Versión 10.0.22621.2361]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>MYSQL -U ROOT -P -PROMPT="Alonso[(\d)]>
+MYSQL: [Warning] option 'port': value -PROMPT=Alonso[(\d)]> adjusted to 0.
+ERROR 1045 (28000): Access denied for user 'ODBC'@'localhost' (using password: NO)
+
+C:\Users\alons>MYSQL -u ROOT -p --PROMPT="Alonso[(\d)]>
+MYSQL: [ERROR] unknown variable 'PROMPT=Alonso[(\d)]>'.
+
+C:\Users\alons>mysql -u root -p --prompt="Alonso[(\d)]>
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 11
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+Alonso[((none))]>CREATE DATABASE Practica1SQL
+    -> ;
+Query OK, 1 row affected (0.02 sec)
+
+Alonso[((none))]>use Practica1SQL;
+Database changed
+Alonso[(Practica1SQL)]>CREATE TABLE ACTOR(
+    -> Actor_id INT AUTO_INCREMENT PRIMARY KEY,
+    -> Nombre VARCHAR(20),
+    -> Apellidos VARCHAR(45),
+    -> Fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    -> Saldo INT
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+Alonso[(Practica1SQL)]>DESCRIBE ACTOR
+    -> ;
++-----------+-------------+------+-----+-------------------+-------------------+
+| Field     | Type        | Null | Key | Default           | Extra             |
++-----------+-------------+------+-----+-------------------+-------------------+
+| Actor_id  | int         | NO   | PRI | NULL              | auto_increment    |
+| Nombre    | varchar(20) | YES  |     | NULL              |                   |
+| Apellidos | varchar(45) | YES  |     | NULL              |                   |
+| Fecha     | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| Saldo     | int         | YES  |     | NULL              |                   |
++-----------+-------------+------+-----+-------------------+-------------------+
+5 rows in set (0.00 sec)
+
+Alonso[(Practica1SQL)]>SHOW CREATE TABLE ACTOR
+    -> ;
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table
+
+              |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ACTOR | CREATE TABLE `actor` (
+  `Actor_id` int NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(20) DEFAULT NULL,
+  `Apellidos` varchar(45) DEFAULT NULL,
+  `Fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `Saldo` int DEFAULT NULL,
+  PRIMARY KEY (`Actor_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(Practica1SQL)]>ALTER TABLE ACTOR CONVERT TO CHARACTER SET utf32 COLLATE utf_spanish_ci
+    -> ;
+ERROR 1273 (HY000): Unknown collation: 'utf_spanish_ci'
+Alonso[(Practica1SQL)]>ALTER TABLE ACTOR CONVERT TO CHARACTER SET utf32 COLLATE utf32_spanish_ci;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Alonso[(Practica1SQL)]>SHOW TABLES
+    -> ;
++------------------------+
+| Tables_in_practica1sql |
++------------------------+
+| actor                  |
++------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(Practica1SQL)]>RENAME TABLE Actor TO Actores;
+Query OK, 0 rows affected (0.02 sec)
+
+Alonso[(Practica1SQL)]>ALTER TABLE actores RENAME COLUMN Fecha TO Fecha_nacimiento;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Alonso[(Practica1SQL)]>ALTER TABLE actores MODIFY COLUMN Fecha_nacimiento DATE CHECK (Fecha_nacimiento > '1980-10-10);
+    '> ;
+    '> ALTER TABLE actores MODIFY COLUMN Fecha_nacimiento DATE CHECK (Fecha_nacimiento > '1980-10-10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1980-10-10)' at line 3
+Alonso[(Practica1SQL)]>ALTER TABLE actores MODIFY COLUMN Fecha_nacimiento DATE CHECK (Fecha_nacimiento > '1980-10-10);
+    '> ;
+    '> ALTER TABLE actores MODIFY COLUMN Fecha_nacimiento DATE CHECK (Fecha_nacimiento > '1980-10-10);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '1980-10-10)' at line 3
+Alonso[(Practica1SQL)]>ALTER TABLE actores MODIFY COLUMN Fecha_nacimiento DATE CHECK (Fecha_nacimiento > '1980-10-10');
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Alonso[(Practica1SQL)]>ALTER TABLE actores ADD COLUMN Ultima_actualizacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Alonso[(Practica1SQL)]>ALTER TABLE actores ADD [COLUMN] Ciudad VARCHAR(20) AFTER Actor_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[COLUMN] Ciudad VARCHAR(20) AFTER Actor_id' at line 1
+Alonso[(Practica1SQL)]>ALTER TABLE actores ADD COLUMN Ciudad VARCHAR(20) AFTER Actor_id;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Alonso[(Practica1SQL)]>DESCRIBE ACTORes
+    -> ;
++----------------------+-------------+------+-----+-------------------+-------------------+
+| Field                | Type        | Null | Key | Default           | Extra             |
++----------------------+-------------+------+-----+-------------------+-------------------+
+| Actor_id             | int         | NO   | PRI | NULL              | auto_increment    |
+| Ciudad               | varchar(20) | YES  |     | NULL              |                   |
+| Nombre               | varchar(20) | YES  |     | NULL              |                   |
+| Apellidos            | varchar(45) | YES  |     | NULL              |                   |
+| Fecha_nacimiento     | date        | YES  |     | NULL              |                   |
+| Saldo                | int         | YES  |     | NULL              |                   |
+| Ultima_actualizacion | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++----------------------+-------------+------+-----+-------------------+-------------------+
+7 rows in set (0.00 sec)
+
+Alonso[(Practica1SQL)]>ALTER TABLE actores DROP COLUMN Ciudad;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Alonso[(Practica1SQL)]>DESCRIBE ACTORes
+    -> ;
++----------------------+-------------+------+-----+-------------------+-------------------+
+| Field                | Type        | Null | Key | Default           | Extra             |
++----------------------+-------------+------+-----+-------------------+-------------------+
+| Actor_id             | int         | NO   | PRI | NULL              | auto_increment    |
+| Nombre               | varchar(20) | YES  |     | NULL              |                   |
+| Apellidos            | varchar(45) | YES  |     | NULL              |                   |
+| Fecha_nacimiento     | date        | YES  |     | NULL              |                   |
+| Saldo                | int         | YES  |     | NULL              |                   |
+| Ultima_actualizacion | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++----------------------+-------------+------+-----+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+Alonso[(Practica1SQL)]>ALTER TABLE actores MODIFY COLUMN Apellidos VARCHAR(50);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+Alonso[(Practica1SQL)]>DESCRIBE Actores;
++----------------------+-------------+------+-----+-------------------+-------------------+
+| Field                | Type        | Null | Key | Default           | Extra             |
++----------------------+-------------+------+-----+-------------------+-------------------+
+| Actor_id             | int         | NO   | PRI | NULL              | auto_increment    |
+| Nombre               | varchar(20) | YES  |     | NULL              |                   |
+| Apellidos            | varchar(50) | YES  |     | NULL              |                   |
+| Fecha_nacimiento     | date        | YES  |     | NULL              |                   |
+| Saldo                | int         | YES  |     | NULL              |                   |
+| Ultima_actualizacion | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++----------------------+-------------+------+-----+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+Alonso[(Practica1SQL)]>DROP TABLE Actores;
+Query OK, 0 rows affected (0.02 sec)
+
+Alonso[(Practica1SQL)]>show tables:
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1
+Alonso[(Practica1SQL)]>show tables;
+Empty set (0.00 sec)
+
+Alonso[(Practica1SQL)]>DROP DATABASE practica1sql
+    -> ;
+Query OK, 0 rows affected (0.01 sec)
+
+Alonso[((none))]>

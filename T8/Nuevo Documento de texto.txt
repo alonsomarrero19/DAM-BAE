@@ -1,0 +1,122 @@
+Select * FROM dba_users; => tabla donde estan los usuarios
+HR => Sakila version oracle
+
+para desbloquear el uswr HR
+
+alter user HR account unlock; => user desbloqueado
+
+alter user HR identified by hr => contraseña del user HR ahora es hr
+
+nueva conexxion con los datos del HR
+Nombre: HR@hr
+user: HR
+password: hr
+
+Desconcetar de System y conectar a HR
+
+SELECT * FROM employees WHERE rownum <= 1;
+
+SELECT * FROM USER_TABLES;
+
+-- Comentario en linea
+
+/*
+* Comentario en bloque
+*/
+
+------------------ BLOQUE ANONIMOS -------------------
+SET SERVEROUTPUT ON;
+
+DECLARE 
+
+ Localidad VARCHAR2(50) := 'Santa Cruz';
+ Comision NUMBER := 500;
+ Total Comision%TYPE;
+ Salario EMPLOYEES.salary%TYPE; 
+ Porcentaje NUMBER(5,3); -- 5 digitos de los cuales 3 son decimales
+ EsCasado BOOLEAN := TRUE;
+ Fecha DATE;
+ FechayHora TYMESTAMP;
+
+
+BEGIN 
+
+ Total := 4500 
+ Comision := 10;
+ Porcentaje := 10.999;
+ Fecha := '10-01-2024'
+
+ dbms_output.put_line(Total);
+ dbms_output.put_line(Comision);
+ dbms_output.put_line(Salario); -- NULL
+ dbms_output.put_line(Salario+10); -- NULL + loquesea = NULL
+
+ dbms_output.put_line(Total+Comision);
+ dbms_output.put_line(Localidad || ' de Tenerife');
+
+ dbms_output.put_line(Porcentaje);
+ dbms_output.put_line(Fecha);
+
+ dbms_output.put(----->);
+ dbms_output.put(Localidad);
+
+ dbms_output.new_line;
+
+
+END;
+/
+
+___________________________________________________
+
+
+
+----------------- BLOQUES ANONIMOS ANIDADOS --------------------
+SET SERVEROUTPUT ON;
+
+DECLARE 
+
+ X NUMBER := 20; -- Variable Global
+ Z NUMBER := 10; -- Variable Global
+
+BEGIN 
+
+ dbms_output.put_line('X := ' || X);
+
+ DECLARE
+
+   X NUMBER := 10; -- Variable local
+
+ BEGIN
+
+  dbms_output.put_line('X := ' || X);
+  dbms_output.put_line('Z := ' || Z);
+
+ END
+
+END;
+/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,907 @@
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 70
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> prompt Alonso[(\d)]>
+PROMPT set to 'Alonso[(\d)]>'
+Alonso[((none))]>help
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+notee     (\t) Don't write into outfile.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+query_attributes Sets string parameters (name1 value1 name2 value2 ...) for the next query to pick up.
+ssl_session_data_print Serializes the current SSL session data to stdout or file
+
+For server side help, type 'help contents'
+
+Alonso[((none))]>clear
+Alonso[((none))]>;
+ERROR:
+No query specified
+
+Alonso[((none))]>show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| controlt6          |
+| controltema5       |
+| exament4           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| prueba             |
+| sakila             |
+| sys                |
+| t4p1               |
+| t4p2               |
+| t4p2.1             |
+| t4p2.2             |
+| t4p2.3             |
+| tema5practica1     |
+| tema5practica2     |
+| tema5practica3     |
+| tema5practica4     |
+| tema6practica1     |
+| tema6practica2     |
+| tema6practica3     |
+| test               |
+| testeo             |
+| world              |
++--------------------+
+24 rows in set (0.00 sec)
+
+Alonso[((none))]>use controlt6
+Database changed
+Alonso[(controlt6)]>show tables
+    -> ;
++---------------------+
+| Tables_in_controlt6 |
++---------------------+
+| articulos           |
+| fabricantes         |
+| pedidos             |
+| tiendas             |
+| ventas              |
++---------------------+
+5 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>describe fabricantes;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| Cod_Fabricante | int unsigned | NO   | PRI | NULL    |       |
+| Nombre         | varchar(15)  | YES  |     | NULL    |       |
+| Pais           | varchar(15)  | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>describe tiendas;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| Nif       | varchar(6)   | NO   | PRI | NULL    |       |
+| Nombre    | varchar(20)  | YES  |     | NULL    |       |
+| Direccion | varchar(20)  | YES  |     | NULL    |       |
+| Poblacion | varchar(20)  | YES  |     | NULL    |       |
+| Provincia | varchar(20)  | YES  |     | NULL    |       |
+| CodPostal | int unsigned | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>INSERT INTO tiendas VALUES('5456-c','tienda1','direccion1','poblacion1','SEVILLA','56789');
+Query OK, 1 row affected (0.01 sec)
+
+Alonso[(controlt6)]>INSERT INTO tiendas VALUES('5457-c','tienda2','direccion2','poblacion2','SEVILLA','56789');
+Query OK, 1 row affected (0.00 sec)
+
+Alonso[(controlt6)]>select * from tiendas;
++--------+---------------------+-----------------------+--------------------+-------------+-----------+
+| Nif    | Nombre              | Direccion             | Poblacion          | Provincia   | CodPostal |
++--------+---------------------+-----------------------+--------------------+-------------+-----------+
+| 1111-A | Almacenes Pérez     | C/Toledo, 20          | Siguenza           | GUADALAJARA |     19104 |
+| 2222-A | Comestibles Rodolfo | C/ del Val s/n        | Alcalá de Henares  | MADRID      |     28804 |
+| 3333-N | Ultramarinos Montse | Avda Pio 10           | Toledo             | TOLEDO      |     45100 |
+| 4141-B | Todo Toledo         | C/Avila 24            | Talavera           | TOLEDO      |     45199 |
+| 4444-A | La Pasta Gansa      | C/Alcalá, 20          | Ajalvir            | MADRID      |     28765 |
+| 5456-c | tienda1             | direccion1            | poblacion1         | SEVILLA     |     56789 |
+| 5457-c | tienda2             | direccion2            | poblacion2         | SEVILLA     |     56789 |
+| 5555-B | La Gacela           | C/Santander Ríos, 20  | Azuqueca           | GUADALAJARA |     19209 |
++--------+---------------------+-----------------------+--------------------+-------------+-----------+
+8 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>Select * from pedidos;
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Pedido | Unidades_Pedidas |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| 1111-A | Barquillos         |             15 | 1.00 | Primera   | 2010-02-20   |               10 |
+| 1111-A | Canutillos         |             15 | 2.00 | Segunda   | 2010-04-10   |               12 |
+| 1111-A | Leche semi.        |             30 | 1.00 | Primera   | 2010-06-24   |                5 |
+| 1111-A | Leche semi.        |             30 | 2.00 | Primera   | 2010-07-04   |               11 |
+| 1111-A | Mantequilla        |             30 | 1.00 | Primera   | 2010-07-10   |               10 |
+| 2222-A | Mejillones         |             10 | 1.00 | Primera   | 2021-03-09   |             1000 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Segunda   | 2010-08-12   |               20 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Tercera   | 2010-02-12   |               22 |
+| 3333-A | Barquillos         |             15 | 1.00 | Segunda   | 2010-11-20   |               40 |
+| 3333-A | Canutillos         |             15 | 2.00 | Segunda   | 2010-11-20   |               10 |
+| 3333-A | Fideos             |             25 | 1.00 | Primera   | 2010-11-15   |               11 |
+| 3333-A | Galletas Cuadradas |             15 | 1.00 | Primera   | 2010-11-20   |                6 |
+| 3333-A | Macarrones         |             25 | 1.00 | Primera   | 2010-11-10   |                8 |
+| 3333-A | Tallarines         |             25 | 1.00 | Primera   | 2010-11-12   |                9 |
+| 4141-B | Atún               |             10 | 3.00 | Primera   | 2010-06-21   |               10 |
+| 4141-B | Atún               |             10 | 3.00 | Segunda   | 2010-08-12   |                9 |
+| 4141-B | Macarrones         |             20 | 1.00 | Primera   | 2010-04-16   |               30 |
+| 5555-B | Atún               |             10 | 3.00 | Primera   | 2010-02-21   |               10 |
+| 5555-B | Atún               |             10 | 3.00 | Segunda   | 2010-03-11   |                4 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-18   |               24 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-19   |               20 |
+| 5555-B | Galletas Cuadradas |             15 | 1.00 | Segunda   | 2010-06-20   |               15 |
+| 5555-B | Macarrones         |             20 | 1.00 | Primera   | 2010-02-18   |               30 |
+| 5555-B | Macarrones         |             25 | 1.00 | Primera   | 2010-04-14   |               12 |
+| 5555-B | Sardinillas        |             10 | 1.00 | Segunda   | 2010-03-11   |               10 |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+25 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>select * from fabricante
+    -> ;
+ERROR 1146 (42S02): Table 'controlt6.fabricante' doesn't exist
+Alonso[(controlt6)]>select * from fabricantes;
++----------------+-----------+----------+
+| Cod_Fabricante | Nombre    | Pais     |
++----------------+-----------+----------+
+|             10 | CALVO     | España   |
+|             15 | LU        | Bélgica  |
+|             20 | BARILA    | Italia   |
+|             25 | GALLO     | España   |
+|             30 | PRESIDENT | Francia  |
++----------------+-----------+----------+
+5 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>Select * from pedidos WHERE categoria = 'Primera' AND cod_Fabricante IN (SELECT pais FROM fabricantes WHERE Pais = Bélgica);
+ERROR 1054 (42S22): Unknown column 'Bélgica' in 'where clause'
+Alonso[(controlt6)]>Select * from pedidos WHERE categoria = 'Primera' AND cod_Fabricante IN (SELECT pais FROM fabricantes WHERE Pais = 'Bélgica');
+Empty set (0.00 sec)
+
+Alonso[(controlt6)]>Select * from pedidos WHERE categoria = 'Primera' AND cod_Fabricante IN (SELECT Cod_Fabrcante FROM fabricantes WHERE Pais = 'Bélgica');
+ERROR 1054 (42S22): Unknown column 'Cod_Fabrcante' in 'field list'
+Alonso[(controlt6)]>Select * from pedidos WHERE categoria = 'Primera' AND cod_Fabricante IN (SELECT Cod_Fabricante FROM fabricantes WHERE Pais = 'Bélgica');
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Pedido | Unidades_Pedidas |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| 1111-A | Barquillos         |             15 | 1.00 | Primera   | 2010-02-20   |               10 |
+| 3333-A | Galletas Cuadradas |             15 | 1.00 | Primera   | 2010-11-20   |                6 |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+2 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>DELETE * FROM pedidos WHERE categoria = 'Primera' AND cod_Fabricante IN (SELECT Cod_Fabricante FROM fabricantes WHERE Pais = 'Bélgica');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* FROM pedidos WHERE categoria = 'Primera' AND cod_Fabricante IN (SELECT Cod_Fab' at line 1
+Alonso[(controlt6)]>DELETE * FROM pedidos WHERE categoria = 'Primera' AND cod_Fabricante = (SELECT Cod_Fabricante FROM fabricantes WHERE Pais = 'Bélgica');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* FROM pedidos WHERE categoria = 'Primera' AND cod_Fabricante = (SELECT Cod_Fabr' at line 1
+Alonso[(controlt6)]>DELETE FROM pedidos WHERE categoria = 'Primera' AND cod_Fabricante = (SELECT Cod_Fabricante FROM fabricantes WHERE Pais = 'Bélgica');
+Query OK, 2 rows affected (0.02 sec)
+
+Alonso[(controlt6)]>SELECT * FROM pedidos;
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Pedido | Unidades_Pedidas |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| 1111-A | Canutillos         |             15 | 2.00 | Segunda   | 2010-04-10   |               12 |
+| 1111-A | Leche semi.        |             30 | 1.00 | Primera   | 2010-06-24   |                5 |
+| 1111-A | Leche semi.        |             30 | 2.00 | Primera   | 2010-07-04   |               11 |
+| 1111-A | Mantequilla        |             30 | 1.00 | Primera   | 2010-07-10   |               10 |
+| 2222-A | Mejillones         |             10 | 1.00 | Primera   | 2021-03-09   |             1000 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Segunda   | 2010-08-12   |               20 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Tercera   | 2010-02-12   |               22 |
+| 3333-A | Barquillos         |             15 | 1.00 | Segunda   | 2010-11-20   |               40 |
+| 3333-A | Canutillos         |             15 | 2.00 | Segunda   | 2010-11-20   |               10 |
+| 3333-A | Fideos             |             25 | 1.00 | Primera   | 2010-11-15   |               11 |
+| 3333-A | Macarrones         |             25 | 1.00 | Primera   | 2010-11-10   |                8 |
+| 3333-A | Tallarines         |             25 | 1.00 | Primera   | 2010-11-12   |                9 |
+| 4141-B | Atún               |             10 | 3.00 | Primera   | 2010-06-21   |               10 |
+| 4141-B | Atún               |             10 | 3.00 | Segunda   | 2010-08-12   |                9 |
+| 4141-B | Macarrones         |             20 | 1.00 | Primera   | 2010-04-16   |               30 |
+| 5555-B | Atún               |             10 | 3.00 | Primera   | 2010-02-21   |               10 |
+| 5555-B | Atún               |             10 | 3.00 | Segunda   | 2010-03-11   |                4 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-18   |               24 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-19   |               20 |
+| 5555-B | Galletas Cuadradas |             15 | 1.00 | Segunda   | 2010-06-20   |               15 |
+| 5555-B | Macarrones         |             20 | 1.00 | Primera   | 2010-02-18   |               30 |
+| 5555-B | Macarrones         |             25 | 1.00 | Primera   | 2010-04-14   |               12 |
+| 5555-B | Sardinillas        |             10 | 1.00 | Segunda   | 2010-03-11   |               10 |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+23 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>DELETE FROM pedidos WHERE categoria = 'Primera' AND cod_Fabricante = (SELECT Cod_Fabricante FROM fabricantes WHERE Pais = 'Bélgica');
+Query OK, 0 rows affected (0.00 sec)
+
+Alonso[(controlt6)]>SELECT * FROM pedidos;
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Pedido | Unidades_Pedidas |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| 1111-A | Canutillos         |             15 | 2.00 | Segunda   | 2010-04-10   |               12 |
+| 1111-A | Leche semi.        |             30 | 1.00 | Primera   | 2010-06-24   |                5 |
+| 1111-A | Leche semi.        |             30 | 2.00 | Primera   | 2010-07-04   |               11 |
+| 1111-A | Mantequilla        |             30 | 1.00 | Primera   | 2010-07-10   |               10 |
+| 2222-A | Mejillones         |             10 | 1.00 | Primera   | 2021-03-09   |             1000 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Segunda   | 2010-08-12   |               20 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Tercera   | 2010-02-12   |               22 |
+| 3333-A | Barquillos         |             15 | 1.00 | Segunda   | 2010-11-20   |               40 |
+| 3333-A | Canutillos         |             15 | 2.00 | Segunda   | 2010-11-20   |               10 |
+| 3333-A | Fideos             |             25 | 1.00 | Primera   | 2010-11-15   |               11 |
+| 3333-A | Macarrones         |             25 | 1.00 | Primera   | 2010-11-10   |                8 |
+| 3333-A | Tallarines         |             25 | 1.00 | Primera   | 2010-11-12   |                9 |
+| 4141-B | Atún               |             10 | 3.00 | Primera   | 2010-06-21   |               10 |
+| 4141-B | Atún               |             10 | 3.00 | Segunda   | 2010-08-12   |                9 |
+| 4141-B | Macarrones         |             20 | 1.00 | Primera   | 2010-04-16   |               30 |
+| 5555-B | Atún               |             10 | 3.00 | Primera   | 2010-02-21   |               10 |
+| 5555-B | Atún               |             10 | 3.00 | Segunda   | 2010-03-11   |                4 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-18   |               24 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-19   |               20 |
+| 5555-B | Galletas Cuadradas |             15 | 1.00 | Segunda   | 2010-06-20   |               15 |
+| 5555-B | Macarrones         |             20 | 1.00 | Primera   | 2010-02-18   |               30 |
+| 5555-B | Macarrones         |             25 | 1.00 | Primera   | 2010-04-14   |               12 |
+| 5555-B | Sardinillas        |             10 | 1.00 | Segunda   | 2010-03-11   |               10 |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+23 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>SHOW CREATE TABLE pedidos;
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table
+
+
+
+                                                                                                                         |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| pedidos | CREATE TABLE `pedidos` (
+  `Nif` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Articulo` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Cod_Fabricante` int unsigned NOT NULL,
+  `Peso` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `Categoria` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Fecha_Pedido` date NOT NULL,
+  `Unidades_Pedidas` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`Nif`,`Articulo`,`Cod_Fabricante`,`Peso`,`Categoria`,`Fecha_Pedido`),
+  KEY `Articulo` (`Articulo`),
+  KEY `Cod_Fabricante` (`Cod_Fabricante`),
+  CONSTRAINT `pedidos_ibfk_1` FOREIGN KEY (`Articulo`) REFERENCES `articulos` (`Id`),
+  CONSTRAINT `pedidos_ibfk_2` FOREIGN KEY (`Cod_Fabricante`) REFERENCES `fabricantes` (`Cod_Fabricante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci |
++---------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(controlt6)]>SHOW CREATE TABLE tiendas;
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table
+
+                                                                                                                                                  |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tiendas | CREATE TABLE `tiendas` (
+  `Nif` varchar(6) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Nombre` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Direccion` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Poblacion` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Provincia` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `CodPostal` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`Nif`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(controlt6)]>SELECT * FROM pedidos WHERE nif not in (SELECT nif FROM tiendas)
+    -> ;
++--------+------------+----------------+------+-----------+--------------+------------------+
+| Nif    | Articulo   | Cod_Fabricante | Peso | Categoria | Fecha_Pedido | Unidades_Pedidas |
++--------+------------+----------------+------+-----------+--------------+------------------+
+| 3333-A | Barquillos |             15 | 1.00 | Segunda   | 2010-11-20   |               40 |
+| 3333-A | Canutillos |             15 | 2.00 | Segunda   | 2010-11-20   |               10 |
+| 3333-A | Fideos     |             25 | 1.00 | Primera   | 2010-11-15   |               11 |
+| 3333-A | Macarrones |             25 | 1.00 | Primera   | 2010-11-10   |                8 |
+| 3333-A | Tallarines |             25 | 1.00 | Primera   | 2010-11-12   |                9 |
++--------+------------+----------------+------+-----------+--------------+------------------+
+5 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>SELECT nif from tiendas;
++--------+
+| nif    |
++--------+
+| 1111-A |
+| 2222-A |
+| 3333-N |
+| 4141-B |
+| 4444-A |
+| 5456-c |
+| 5457-c |
+| 5555-B |
++--------+
+8 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>DELETE FROM pedidos WHERE nif not in (SELECT nif FROM tiendas);
+Query OK, 5 rows affected (0.01 sec)
+
+Alonso[(controlt6)]>SELECT * FROM pedidos;
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Pedido | Unidades_Pedidas |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+| 1111-A | Canutillos         |             15 | 2.00 | Segunda   | 2010-04-10   |               12 |
+| 1111-A | Leche semi.        |             30 | 1.00 | Primera   | 2010-06-24   |                5 |
+| 1111-A | Leche semi.        |             30 | 2.00 | Primera   | 2010-07-04   |               11 |
+| 1111-A | Mantequilla        |             30 | 1.00 | Primera   | 2010-07-10   |               10 |
+| 2222-A | Mejillones         |             10 | 1.00 | Primera   | 2021-03-09   |             1000 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Segunda   | 2010-08-12   |               20 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Tercera   | 2010-02-12   |               22 |
+| 4141-B | Atún               |             10 | 3.00 | Primera   | 2010-06-21   |               10 |
+| 4141-B | Atún               |             10 | 3.00 | Segunda   | 2010-08-12   |                9 |
+| 4141-B | Macarrones         |             20 | 1.00 | Primera   | 2010-04-16   |               30 |
+| 5555-B | Atún               |             10 | 3.00 | Primera   | 2010-02-21   |               10 |
+| 5555-B | Atún               |             10 | 3.00 | Segunda   | 2010-03-11   |                4 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-18   |               24 |
+| 5555-B | Fideos             |             25 | 1.00 | Segunda   | 2010-05-19   |               20 |
+| 5555-B | Galletas Cuadradas |             15 | 1.00 | Segunda   | 2010-06-20   |               15 |
+| 5555-B | Macarrones         |             20 | 1.00 | Primera   | 2010-02-18   |               30 |
+| 5555-B | Macarrones         |             25 | 1.00 | Primera   | 2010-04-14   |               12 |
+| 5555-B | Sardinillas        |             10 | 1.00 | Segunda   | 2010-03-11   |               10 |
++--------+--------------------+----------------+------+-----------+--------------+------------------+
+18 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>SELECT DATA FROM fabricantes
+    -> INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\fabricantes.txt'
+    -> FIELDS TERMINATED BY '@'
+    -> LINES TERMINATED BY '\r\n';
+ERROR 1054 (42S22): Unknown column 'DATA' in 'field list'
+Alonso[(controlt6)]>SELECT FROM fabricantes
+    -> INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\fabricantes.txt'
+    -> FIELDS TERMINATED BY '@'
+    -> LINES TERMINATED BY '\r\n';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM fabricantes
+INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads' at line 1
+Alonso[(controlt6)]>EXPORT DATA FROM fabricantes
+    -> INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\fabricantes.txt'
+    -> FIELDS TERMINATED BY '@'
+    -> LINES TERMINATED BY '\r\n';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'EXPORT DATA FROM fabricantes
+INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server ' at line 1
+Alonso[(controlt6)]>import data FROM fabricantes
+    -> INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\fabricantes.txt'
+    -> FIELDS TERMINATED BY '@'
+    -> LINES TERMINATED BY '\r\n';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'data FROM fabricantes
+INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Up' at line 1
+Alonso[(controlt6)]>SELECT * FROM fabricantes
+    -> INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\fabricantes.txt'
+    -> FIELDS TERMINATED BY '@'
+    -> LINES TERMINATED BY '\r\n';
+Query OK, 5 rows affected (0.00 sec)
+
+Alonso[(controlt6)]>SHOW CREATE TABLE ventas;
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table
+
+
+
+
+                        |
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ventas | CREATE TABLE `ventas` (
+  `Nif` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Articulo` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Cod_Fabricante` int unsigned NOT NULL,
+  `Peso` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `Categoria` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Fecha_Venta` date NOT NULL,
+  `Unidades_Vendidas` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`Nif`,`Articulo`,`Cod_Fabricante`,`Peso`,`Categoria`,`Fecha_Venta`),
+  KEY `Articulo` (`Articulo`),
+  KEY `Cod_Fabricante` (`Cod_Fabricante`),
+  CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`Nif`) REFERENCES `tiendas` (`Nif`),
+  CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`Articulo`) REFERENCES `articulos` (`Id`),
+  CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`Cod_Fabricante`) REFERENCES `fabricantes` (`Cod_Fabricante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci |
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(controlt6)]>create table ventas2 (
+    -> Nif varchar(10) not null,
+    -> Articulo varchar(20) not null,
+    -> Cod_fabricante int unsigned not null,
+    -> Peso decimal(5,2) not null default '0.00',
+    -> Categoria varchar(10) not null,
+    -> Fecha_Venta date not null,
+    -> Unidades_Vendidas int unsigned default null,
+    -> primary key ('Nif','Articulo','Cod_Fabricante','Peso','Categoria','Fecha_Venta'),
+    -> constraint 'ventas_tiendas_FK' foreign key ('Nif') references 'tiendas' (Nif)
+    -> ,constraint 'ventas_articulos_FK' foreign key ('Articulo') references 'articulos' ('Id'),
+    -> constraint 'ventas_fabricantes_FK' foreign key ('Cod_Fabricante') references 'fabricantes' (Cod_Fabricante))
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Nif','Articulo','Cod_Fabricante','Peso','Categoria','Fecha_Venta'),
+constraint ' at line 9
+Alonso[(controlt6)]>create table ventas2 (
+    -> Nif varchar(10) not null,
+    -> Articulo varchar(20) not null,
+    -> Cod_fabricante int unsigned not null,
+    -> Peso decimal(5,2) not null default '0.00',
+    -> Categoria varchar(10) not null,
+    -> Fecha_Venta date not null,
+    -> Unidades_Vendidas int unsigned default null,
+    -> primary key (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta),
+    -> constraint 'ventas_tiendas_FK' foreign key (Nif) references 'tiendas' (Nif),
+    -> constraint 'ventas_articulos_FK' foreign key (Articulo) references articulos (Id),
+    -> constraint 'ventas_fabricantes_FK' foreign key (Cod_Fabricante) references fabricantes (Cod_Fabricante));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''ventas_tiendas_FK' foreign key (Nif) references 'tiendas' (Nif),
+constraint 've' at line 10
+Alonso[(controlt6)]>create table ventas2 (
+    -> Nif varchar(10) not null,
+    -> Articulo varchar(20) not null,
+    -> Cod_fabricante int unsigned not null,
+    -> Peso decimal(5,2) not null default '0.00',
+    -> Categoria varchar(10) not null,
+    -> Fecha_Venta date not null,
+    -> Unidades_Vendidas int unsigned default null,
+    -> primary key (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta),
+    -> constraint 'ventas_tiendas_FK' foreign key (Nif) references tiendas (Nif),
+    -> constraint 'ventas_articulos_FK' foreign key (Articulo) references articulos (Id),
+    -> constraint 'ventas_fabricantes_FK' foreign key (Cod_Fabricante) references fabricantes (Cod_Fabricante));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''ventas_tiendas_FK' foreign key (Nif) references tiendas (Nif),
+constraint 'vent' at line 10
+Alonso[(controlt6)]>create table ventas2 (
+    -> Nif varchar(10) not null,
+    -> Articulo varchar(20) not null,
+    -> Cod_fabricante int unsigned not null,
+    -> Peso decimal(5,2) not null default '0.00',
+    -> Categoria varchar(10) not null,
+    -> Fecha_Venta date not null,
+    -> Unidades_Vendidas int unsigned default null,
+    -> primary key (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta),
+    -> constraint ventas_tiendas_FK foreign key (Nif) references 'tiendas' (Nif),
+    -> constraint ventas_articulos_FK foreign key (Articulo) references articulos (Id),
+    -> constraint ventas_fabricantes_FK foreign key (Cod_Fabricante) references fabricantes (Cod_Fabricante));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''tiendas' (Nif),
+constraint ventas_articulos_FK foreign key (Articulo) reference' at line 10
+Alonso[(controlt6)]>create table ventas2 (
+    -> Nif varchar(10) not null,
+    -> Articulo varchar(20) not null,
+    -> Cod_fabricante int unsigned not null,
+    -> Peso decimal(5,2) not null default '0.00',
+    -> Categoria varchar(10) not null,
+    -> Fecha_Venta date not null,
+    -> Unidades_Vendidas int unsigned default null,
+    -> primary key (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta),
+    -> constraint ventas_tiendas_FK foreign key (Nif) references tiendas (Nif),
+    -> constraint ventas_articulos_FK foreign key (Articulo) references articulos (Id),
+    -> constraint ventas_fabricantes_FK foreign key (Cod_Fabricante) references fabricantes (Cod_Fabricante));
+ERROR 3780 (HY000): Referencing column 'Nif' and referenced column 'Nif' in foreign key constraint 'ventas_tiendas_FK' are incompatible.
+Alonso[(controlt6)]>Describe tiendas;
++-----------+--------------+------+-----+---------+-------+
+| Field     | Type         | Null | Key | Default | Extra |
++-----------+--------------+------+-----+---------+-------+
+| Nif       | varchar(6)   | NO   | PRI | NULL    |       |
+| Nombre    | varchar(20)  | YES  |     | NULL    |       |
+| Direccion | varchar(20)  | YES  |     | NULL    |       |
+| Poblacion | varchar(20)  | YES  |     | NULL    |       |
+| Provincia | varchar(20)  | YES  |     | NULL    |       |
+| CodPostal | int unsigned | YES  |     | NULL    |       |
++-----------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>Describe ventas;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| Nif               | varchar(10)  | NO   | PRI | NULL    |       |
+| Articulo          | varchar(20)  | NO   | PRI | NULL    |       |
+| Cod_Fabricante    | int unsigned | NO   | PRI | NULL    |       |
+| Peso              | decimal(5,2) | NO   | PRI | 0.00    |       |
+| Categoria         | varchar(10)  | NO   | PRI | NULL    |       |
+| Fecha_Venta       | date         | NO   | PRI | NULL    |       |
+| Unidades_Vendidas | int unsigned | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>show create table ventas;
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table
+
+
+
+
+                        |
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ventas | CREATE TABLE `ventas` (
+  `Nif` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Articulo` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Cod_Fabricante` int unsigned NOT NULL,
+  `Peso` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `Categoria` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Fecha_Venta` date NOT NULL,
+  `Unidades_Vendidas` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`Nif`,`Articulo`,`Cod_Fabricante`,`Peso`,`Categoria`,`Fecha_Venta`),
+  KEY `Articulo` (`Articulo`),
+  KEY `Cod_Fabricante` (`Cod_Fabricante`),
+  CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`Nif`) REFERENCES `tiendas` (`Nif`),
+  CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`Articulo`) REFERENCES `articulos` (`Id`),
+  CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`Cod_Fabricante`) REFERENCES `fabricantes` (`Cod_Fabricante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci |
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(controlt6)]>show create table tiendas;
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table   | Create Table
+
+                                                                                                                                                  |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| tiendas | CREATE TABLE `tiendas` (
+  `Nif` varchar(6) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Nombre` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Direccion` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Poblacion` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `Provincia` varchar(20) COLLATE utf8mb4_spanish_ci DEFAULT NULL,
+  `CodPostal` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`Nif`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci |
++---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(controlt6)]>create table ventas2 (
+    -> Nif varchar(6) not null,
+    -> Articulo varchar(20) not null,
+    -> Cod_fabricante int unsigned not null,
+    -> Peso decimal(5,2) not null default '0.00',
+    -> Categoria varchar(10) not null,
+    -> Fecha_Venta date not null,
+    -> Unidades_Vendidas int unsigned default null,
+    -> primary key (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta),
+    -> constraint ventas_tiendas_FK foreign key (Nif) references tiendas (Nif),
+    -> constraint ventas_articulos_FK foreign key (Articulo) references articulos (Id),
+    -> constraint ventas_fabricantes_FK foreign key (Cod_Fabricante) references fabricantes (Cod_Fabricante));
+ERROR 3780 (HY000): Referencing column 'Nif' and referenced column 'Nif' in foreign key constraint 'ventas_tiendas_FK' are incompatible.
+Alonso[(controlt6)]>create table ventas2 (
+    -> ,
+    -> :
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',
+:' at line 2
+Alonso[(controlt6)]>show create table ventas;
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table
+
+
+
+
+                        |
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ventas | CREATE TABLE `ventas` (
+  `Nif` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Articulo` varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Cod_Fabricante` int unsigned NOT NULL,
+  `Peso` decimal(5,2) NOT NULL DEFAULT '0.00',
+  `Categoria` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `Fecha_Venta` date NOT NULL,
+  `Unidades_Vendidas` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`Nif`,`Articulo`,`Cod_Fabricante`,`Peso`,`Categoria`,`Fecha_Venta`),
+  KEY `Articulo` (`Articulo`),
+  KEY `Cod_Fabricante` (`Cod_Fabricante`),
+  CONSTRAINT `ventas_ibfk_1` FOREIGN KEY (`Nif`) REFERENCES `tiendas` (`Nif`),
+  CONSTRAINT `ventas_ibfk_2` FOREIGN KEY (`Articulo`) REFERENCES `articulos` (`Id`),
+  CONSTRAINT `ventas_ibfk_3` FOREIGN KEY (`Cod_Fabricante`) REFERENCES `fabricantes` (`Cod_Fabricante`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci |
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+Alonso[(controlt6)]>CREATE TABLE ventas2 (
+    ->   Nif varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+    ->   Articulo varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+    ->   Cod_Fabricante int unsigned NOT NULL,
+    ->   Peso decimal(5,2) NOT NULL DEFAULT '0.00',
+    ->   Categoria varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+    ->   Fecha_Venta date NOT NULL,
+    ->   Unidades_Vendidas int unsigned DEFAULT NULL,
+    ->   PRIMARY KEY (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta),
+    ->   KEY Articulo (Articulo),
+    ->   KEY Cod_Fabricante (Cod_Fabricante),
+    ->   CONSTRAINT ventas_ibfk_1 FOREIGN KEY (Nif) REFERENCES tiendas (Nif),
+    ->   CONSTRAINT ventas_ibfk_2 FOREIGN KEY (Articulo) REFERENCES articulos (Id),
+    ->   CONSTRAINT ventas_ibfk_3 FOREIGN KEY (Cod_Fabricante) REFERENCES fabricantes (Cod_Fabricante)
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+ERROR 1826 (HY000): Duplicate foreign key constraint name 'ventas_ibfk_1'
+Alonso[(controlt6)]>CREATE TABLE ventas2 (
+    ->   Nif varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+    ->   Articulo varchar(20) COLLATE utf8mb4_spanish_ci NOT NULL,
+    ->   Cod_Fabricante int unsigned NOT NULL,
+    ->   Peso decimal(5,2) NOT NULL DEFAULT '0.00',
+    ->   Categoria varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+    ->   Fecha_Venta date NOT NULL,
+    ->   Unidades_Vendidas int unsigned DEFAULT NULL,
+    ->   PRIMARY KEY (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta),
+    ->   KEY Articulo (Articulo),
+    ->   KEY Cod_Fabricante (Cod_Fabricante),
+    ->   CONSTRAINT ventas_tiendas FOREIGN KEY (Nif) REFERENCES tiendas (Nif),
+    ->   CONSTRAINT ventas_articulos FOREIGN KEY (Articulo) REFERENCES articulos (Id),
+    ->   CONSTRAINT ventas_fabricantes FOREIGN KEY (Cod_Fabricante) REFERENCES fabricantes (Cod_Fabricante)
+    -> ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+Query OK, 0 rows affected (0.09 sec)
+
+Alonso[(controlt6)]>show tables;
++---------------------+
+| Tables_in_controlt6 |
++---------------------+
+| articulos           |
+| fabricantes         |
+| pedidos             |
+| tiendas             |
+| ventas              |
+| ventas2             |
++---------------------+
+6 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>SELECT * FROM ventas
+    -> INTO vantas2;
+ERROR 1327 (42000): Undeclared variable: vantas2
+Alonso[(controlt6)]>SELECT * FROM ventas
+    -> INTO ventas2;
+ERROR 1327 (42000): Undeclared variable: ventas2
+Alonso[(controlt6)]>SELECT * FROM ventas
+    -> INTO TABLE ventas2;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE ventas2' at line 2
+Alonso[(controlt6)]>INSERT INTO ventas2 VALUES(SELECT * FROM ventas);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM ventas)' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2 VALUES FROM (SELECT * FROM ventas;)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM (SELECT * FROM ventas' at line 1
+    ->
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+Alonso[(controlt6)]>describe table ventas;
++----+-------------+--------+------------+------+---------------+------+---------+------+------+----------+-------+
+| id | select_type | table  | partitions | type | possible_keys | key  | key_len | ref  | rows | filtered | Extra |
++----+-------------+--------+------------+------+---------------+------+---------+------+------+----------+-------+
+|  1 | SIMPLE      | ventas | NULL       | ALL  | NULL          | NULL | NULL    | NULL |   21 |   100.00 | NULL  |
++----+-------------+--------+------------+------+---------------+------+---------+------+------+----------+-------+
+1 row in set, 1 warning (0.00 sec)
+
+Alonso[(controlt6)]>describe ventas;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| Nif               | varchar(10)  | NO   | PRI | NULL    |       |
+| Articulo          | varchar(20)  | NO   | PRI | NULL    |       |
+| Cod_Fabricante    | int unsigned | NO   | PRI | NULL    |       |
+| Peso              | decimal(5,2) | NO   | PRI | 0.00    |       |
+| Categoria         | varchar(10)  | NO   | PRI | NULL    |       |
+| Fecha_Venta       | date         | NO   | PRI | NULL    |       |
+| Unidades_Vendidas | int unsigned | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES (SELECT * FROM ventas);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM ventas)' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES IN (SELECT * FROM ventas);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IN (SELECT * FROM ventas)' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) ?;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES FROM ventas;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM ventas' atline 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES IN (SELECT * FROM ventas WHERE Nif = '2222-A');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'IN (SELECT * FROM ventas WHERE Nif = '2222-A')' at line 1
+Alonso[(controlt6)]>SELECT * FROM ventas
+    -> INTO OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\ventas.txt'
+    -> FIELDS TERMINATED BY ';'
+    -> LINES TERMINATED BY '\r\n';
+Query OK, 21 rows affected (0.01 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2
+    -> FROM OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\ventas.txt'
+    -> FIELDS TERMINATED BY ';'
+    -> LINES TERMINATED BY '\r\n';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM OUTFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\ventas.txt'
+FIE' at line 2
+Alonso[(controlt6)]>SELECT * FROM ventas
+    -> ..;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.' at line 2
+Alonso[(controlt6)]>INSERT INTO ventas2
+    -> from OUTFILE 'C://ProgramData//MySQL//MySQL Server 8.0//Uploads//ventas.txt'
+    -> FIELDS TERMINATED BY ';'
+    -> LINES TERMINATED BY '\r\n';Ç
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from OUTFILE 'C://ProgramData//MySQL//MySQL Server 8.0//Uploads//ventas.txt'
+FIE' at line 2
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Ç' at line 1
+Alonso[(controlt6)]>select * from VENTAS where NIF = '2222-A';
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Venta | Unidades_Vendidas |
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+| 2222-A | Barquillos         |             15 | 1.00 | Primera   | 2020-02-20  |                 6 |
+| 2222-A | Canutillos         |             15 | 2.00 | Segunda   | 2020-06-10  |                 2 |
+| 2222-A | Galletas Cuadradas |             15 | 1.00 | Segunda   | 2020-06-20  |                 5 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Segunda   | 2020-08-15  |                 5 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Tercera   | 2020-08-15  |                 5 |
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+5 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES(SELECT * FROM ventas WHERE Nif = '2222-A');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM ventas WHERE Nif = '2222-A')' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES(2222-A,Barquillos,15,1.00,primera,2020-02-20,6);
+ERROR 1054 (42S22): Unknown column 'A' in 'field list'
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('2222-A','Barquillos','15','1.00','primera','2020-
+02-20','6');
+Query OK, 1 row affected (0.01 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('2222-A','Canutillos','15','2.00','Segunda','2020-
+06-10','2');
+Query OK, 1 row affected (0.01 sec)
+
+Alonso[(controlt6)]>SELECT * FROM ventas2;
++--------+------------+----------------+------+-----------+-------------+-------------------+
+| Nif    | Articulo   | Cod_Fabricante | Peso | Categoria | Fecha_Venta | Unidades_Vendidas |
++--------+------------+----------------+------+-----------+-------------+-------------------+
+| 2222-A | Barquillos |             15 | 1.00 | primera   | 2020-02-20  |                 6 |
+| 2222-A | Canutillos |             15 | 2.00 | Segunda   | 2020-06-10  |                 2 |
++--------+------------+----------------+------+-----------+-------------+-------------------+
+2 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>DELETE FROM ventas2;
+Query OK, 2 rows affected (0.01 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES((SELECT * FROM ventas WHERE Nif = '2222-A'));
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES(Values(SELECT * FROM ventas WHERE Nif = '2222-A'))
+;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * FROM ventas WHERE Nif = '2222-A'))' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('(SELECT * FROM ventas WHERE Nif = '2222-A')');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '2222-A')')' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES("(SELECT * FROM ventas WHERE Nif = '2222-A')");
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES((SELECT Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas FROM ventas WHERE Nif = '2222-A'));
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES(SELECT Nif,Articulo,Cod_Fabricante,Peso,Categoria,
+Fecha_Venta,Unidades_Vendidas FROM ventas WHERE Nif = '2222-A');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas ' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES(2222-A,Barquillos,15,1.00,Primera,2020-02-20,6);
+ERROR 1054 (42S22): Unknown column 'A' in 'field list'
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('2222-A','Barquillos','15','1.00','Primera','2020-
+02-20','6');
+Query OK, 1 row affected (0.01 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('2222-A','Canutillos','15','2.00','Segunda','2020-
+06-10','2');
+Query OK, 1 row affected (0.01 sec)
+
+Alonso[(controlt6)]>SELECT * FROM ventas WHERE nif = '2222-A';
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Venta | Unidades_Vendidas |
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+| 2222-A | Barquillos         |             15 | 1.00 | Primera   | 2020-02-20  |                 6 |
+| 2222-A | Canutillos         |             15 | 2.00 | Segunda   | 2020-06-10  |                 2 |
+| 2222-A | Galletas Cuadradas |             15 | 1.00 | Segunda   | 2020-06-20  |                 5 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Segunda   | 2020-08-15  |                 5 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Tercera   | 2020-08-15  |                 5 |
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+5 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('2222-A','Galletas Cuadradas','15','1.00','Segunda
+','2020-06-20','5');
+Query OK, 1 row affected (0.03 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('2222-A','Sardinillas','10','1.00','Segunda','2020
+-08-15','5');
+Query OK, 1 row affected (0.01 sec)
+
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES('2222-A','Sardinillas','10','1.00','Tercera','2020
+-08-15','5');
+Query OK, 1 row affected (0.01 sec)
+
+Alonso[(controlt6)]>SELECT * from ventas2;
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+| Nif    | Articulo           | Cod_Fabricante | Peso | Categoria | Fecha_Venta | Unidades_Vendidas |
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+| 2222-A | Barquillos         |             15 | 1.00 | Primera   | 2020-02-20  |                 6 |
+| 2222-A | Canutillos         |             15 | 2.00 | Segunda   | 2020-06-10  |                 2 |
+| 2222-A | Galletas Cuadradas |             15 | 1.00 | Segunda   | 2020-06-20  |                 5 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Segunda   | 2020-08-15  |                 5 |
+| 2222-A | Sardinillas        |             10 | 1.00 | Tercera   | 2020-08-15  |                 5 |
++--------+--------------------+----------------+------+-----------+-------------+-------------------+
+5 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>UPDATE Categoria = Segunda FROM ventas2 WHERE Categoria = tercera;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= Segunda FROM ventas2 WHERE Categoria = tercera' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas FROM ventas WHERE Nif = '2222-A');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM ventas WHERE Nif = '2222-A')' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES((Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_
+Venta,Unidades_Vendidas) FROM ventas WHERE Nif = '2222-A');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'FROM ventas WHERE Nif = '2222-A')' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES ( SELECT(Nif,Articulo,Cod_Fabricante,Peso,Categori
+a,Fecha_Venta,Unidades_Vendidas) FROM ventas WHERE Nif = '2222-A');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas)' at line 1
+Alonso[(controlt6)]>INSERT INTO ventas2(Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_Venta,Unidades_Vendidas) VALUES (Nif,Articulo,Cod_Fabricante,Peso,Categoria,Fecha_
+Venta,Unidades_Vendidas);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`controlt6`.`ventas2`, CONSTRAINT `ventas_tiendas` FOREIGN KEY (`Nif`) REFERENCES `tiendas` (`Nif`))
+Alonso[(controlt6)]>UPDATE ventas2 SET categoria = Segunda WHERE categoria = Tercera;
+ERROR 1054 (42S22): Unknown column 'Tercera' in 'where clause'
+Alonso[(controlt6)]>UPDATE ventas2 SET categoria = 'Segunda' WHERE categoria = 'Tercera';
+ERROR 1062 (23000): Duplicate entry '2222-A-Sardinillas-10-1.00-Segunda-2020-08-15' for key 'ventas2.PRIMARY'
+Alonso[(controlt6)]>select * from articulos;
++--------------------+----------------+------+-----------+--------------+--------------+-------------+
+| Id                 | Cod_Fabricante | Peso | Categoria | Precio_Venta | Precio_Costo | Existencias |
++--------------------+----------------+------+-----------+--------------+--------------+-------------+
+| Atún               |             10 | 3.00 | Primera   |       200.00 |       150.00 |         220 |
+| Atún               |             10 | 3.00 | Segunda   |       150.00 |       100.00 |         220 |
+| Atún               |             10 | 3.00 | Tercera   |       100.00 |        50.00 |         220 |
+| Barquillos         |             15 | 1.00 | Primera   |       100.00 |        80.00 |         100 |
+| Barquillos         |             15 | 1.00 | Segunda   |       100.00 |        80.00 |         100 |
+| Canutillos         |             15 | 2.00 | Primera   |       170.00 |       150.00 |         110 |
+| Canutillos         |             15 | 2.00 | Segunda   |       120.00 |       150.00 |         110 |
+| Fideos             |             25 | 1.00 | Primera   |       100.00 |        80.00 |         100 |
+| Fideos             |             25 | 1.00 | Segunda   |        75.00 |        50.00 |         100 |
+| Galletas Cuadradas |             15 | 1.00 | Primera   |       100.00 |        80.00 |         100 |
+| Galletas Cuadradas |             15 | 1.00 | Segunda   |        70.00 |        50.00 |         100 |
+| Galletas Cuadradas |             15 | 1.00 | Tercera   |        50.00 |        40.00 |         100 |
+| Leche desnat.      |             30 | 1.00 | Primera   |       120.00 |       100.00 |         300 |
+| Leche desnat.      |             30 | 2.00 | Primera   |       220.00 |       200.00 |         300 |
+| Leche entera       |             30 | 1.00 | Primera   |       110.00 |       100.00 |         300 |
+| Leche entera       |             30 | 2.00 | Primera   |       210.00 |       200.00 |         300 |
+| Leche semi.        |             30 | 1.00 | Primera   |       130.00 |       110.00 |         300 |
+| Leche semi.        |             30 | 2.00 | Primera   |       230.00 |       210.00 |         300 |
+| Macarrones         |             20 | 1.00 | Primera   |       100.00 |        98.00 |         120 |
+| Macarrones         |             20 | 1.00 | Tercera   |        80.00 |        50.00 |         100 |
+| Macarrones         |             25 | 1.00 | Primera   |        90.00 |        68.00 |         150 |
+| Mantequilla        |             30 | 1.00 | Primera   |       510.00 |       400.00 |         200 |
+| Mantequilla        |             30 | 1.00 | Segunda   |       450.00 |       340.00 |         200 |
+| Mejillones         |             10 | 1.00 | Primera   |       200.00 |       150.00 |         300 |
+| Mejillones         |             10 | 1.00 | Tercera   |        90.00 |        50.00 |         200 |
+| Sardinillas        |             10 | 1.00 | Primera   |       250.00 |       200.00 |         200 |
+| Sardinillas        |             10 | 1.00 | Tercera   |       100.00 |       150.00 |         220 |
+| Sardinillas        |             10 | 2.00 | Segunda   |       200.00 |       160.00 |         200 |
+| Tallarines         |             20 | 1.00 | Segunda   |        99.00 |        50.00 |         100 |
+| Tallarines         |             20 | 2.00 | Primera   |       120.00 |       100.00 |         100 |
+| Tallarines         |             25 | 1.00 | Primera   |       100.00 |        90.00 |         100 |
++--------------------+----------------+------+-----------+--------------+--------------+-------------+
+31 rows in set (0.00 sec)
+
+Alonso[(controlt6)]>UPDATE ventas2 SET categoria = 'Segunda' WHERE categoria = 'Tercera' AND Articulo IN (SELECT Id FROM articulos WHERE Precio_Costo >= 150);
+ERROR 1062 (23000): Duplicate entry '2222-A-Sardinillas-10-1.00-Segunda-2020-08-15' for key 'ventas2.PRIMARY'
+Alonso[(controlt6)]>UPDATE ventas2 SET categoria = 'Segunda' WHERE categoria = 'Tercera'
+    -> AND Articulo IN (SELECT Id FROM articulos WHERE Precio_Costo >= 150);
+ERROR 1062 (23000): Duplicate entry '2222-A-Sardinillas-10-1.00-Segunda-2020-08-15' for key 'ventas2.PRIMARY'
+Alonso[(controlt6)]>UPDATE ventas2 SET categoria = 'Segunda' WHERE categoria = 'Primera' AND
+    -> Cod_Fabricante = (Select Cod_Fabricante FROM fabricantes WHERE pais = Italia);
+ERROR 1054 (42S22): Unknown column 'Italia' in 'where clause'
+Alonso[(controlt6)]>UPDATE ventas2 SET categoria = 'Segunda' WHERE categoria = 'Primera' AND
+    -> Cod_Fabricante = (Select Cod_Fabricante FROM fabricantes WHERE pais = 'Italia');
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+Alonso[(controlt6)]>

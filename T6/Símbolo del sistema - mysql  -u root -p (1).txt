@@ -1,0 +1,649 @@
+Microsoft Windows [Versión 10.0.22631.3235]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 16
+Server version: 8.0.34 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> ;
++--------------------+
+| Database           |
++--------------------+
+| controltema5       |
+| exament4           |
+| information_schema |
+| mysql              |
+| performance_schema |
+| prueba             |
+| sakila             |
+| sys                |
+| t4p1               |
+| t4p2               |
+| t4p2.1             |
+| t4p2.2             |
+| t4p2.3             |
+| tema5practica1     |
+| tema5practica2     |
+| tema5practica3     |
+| tema5practica4     |
+| tema6practica1     |
+| tema6practica2     |
+| tema6practica3     |
+| test               |
+| testeo             |
+| world              |
++--------------------+
+23 rows in set (0.02 sec)
+
+mysql> use tema6practica3
+Database changed
+mysql> show tables
+    -> ;
++--------------------------+
+| Tables_in_tema6practica3 |
++--------------------------+
+| contactos                |
++--------------------------+
+1 row in set (0.01 sec)
+
+mysql> load data infile 'D:\\clase\\BAE\\T6\\T6 P3\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n';
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n';
+ERROR 1366 (HY000): Incorrect integer value: 'ID' for column 'Id' at row 1
+mysql> load data infile 'D:\\clase\\BAE\\T6\\T6 P3\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n';
+ERROR 1290 (HY000): The MySQL server is running with the --secure-file-priv option so it cannot execute this statement
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n';
+ERROR 1366 (HY000): Incorrect integer value: 'Id' for column 'Id' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos;
+ERROR 1366 (HY000): Incorrect integer value: 'Id;Alias;Nombre;Apellidos;Dirección;Población;Teléfono;Móvil;Email;Observaciones;Sexo;Fecha Nacimiento;Estado Civil;Hijos;De' for column 'Id' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n'
+    -> ignore 1 lines
+    -> ;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> select * from contactos
+    -> ;
+Empty set (0.00 sec)
+
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n';
+ERROR 1366 (HY000): Incorrect integer value: 'ID' for column 'Id' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n'
+    -> ignore 2 lines;
+Query OK, 0 rows affected (0.00 sec)
+Records: 0  Deleted: 0  Skipped: 0  Warnings: 0
+
+mysql> select * from contactos;
+Empty set (0.00 sec)
+
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> fields terminated by ';'
+    -> ;
+ERROR 1366 (HY000): Incorrect integer value: 'ID' for column 'Id' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\r\n'
+    -> ignore 1 lines
+    -> ;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+Records: 0  Deleted: 0  Skipped: 0  Warnings: 1
+
+mysql> select * from contactos
+    -> ;
+Empty set (0.00 sec)
+
+mysql> describe contactos
+    -> ;
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+| Field         | Type                                                             | Null | Key | Default   | Extra          |
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+| Id            | int                                                              | NO   | PRI | NULL      | auto_increment |
+| Alias         | varchar(20)                                                      | NO   |     | NULL      |                |
+| Nombre        | varchar(25)                                                      | NO   |     | NULL      |                |
+| Apellidos     | varchar(50)                                                      | NO   |     | NULL      |                |
+| Direccion     | varchar(60)                                                      | NO   |     | NULL      |                |
+| Poblacion     | varchar(25)                                                      | NO   |     | NULL      |                |
+| Telefono      | char(9)                                                          | NO   |     | NULL      |                |
+| Movil         | varchar(15)                                                      | YES  |     | NULL      |                |
+| Email         | varchar(50)                                                      | YES  |     | NULL      |                |
+| Observaciones | text                                                             | YES  |     | NULL      |                |
+| Sexo          | enum('Hombre','Mujer')                                           | NO   |     | NULL      |                |
+| Nacimiento    | date                                                             | NO   |     | NULL      |                |
+| EstadoCivil   | enum('Otros','Separado/a','Soltero/a','Casad0/a','Divorciado/a') | NO   |     | Soltero/a |                |
+| Hijos         | tinyint unsigned                                                 | YES  |     | 0         |                |
+| Desempleado   | tinyint(1)                                                       | NO   |     | NULL      |                |
+| Profesion     | varchar(30)                                                      | YES  |     | NULL      |                |
+| Ingresos      | decimal(6,2)                                                     | NO   |     | 0.00      |                |
+| Altura        | float(3,2) unsigned                                              | YES  |     | NULL      |                |
+| Cabello       | varchar(20)                                                      | NO   |     | NULL      |                |
+| Ojos          | varchar(20)                                                      | NO   |     | NULL      |                |
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+20 rows in set (0.00 sec)
+
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Dirección, Población, Teléfono, Móvil, Email, Observaciones, Sexo, Nacimiento, EstadoCivil, Hijos, Desempleado, Profesión, Ingresos, Altura, Cabello, Ojos)
+    -> ;
+ERROR 1054 (42S22): Unknown column 'Dirección' in 'field list'
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Población, Telefono, Movil, Email, Observaciones, Sexo, Nacimiento, EstadoCivil, Hijos, Desempleado, Profesión, Ingresos, Altura, Cabello, Ojos)
+    -> ;
+ERROR 1054 (42S22): Unknown column 'Población' in 'field list'
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, Nacimiento, EstadoCivil, Hijos, Desempleado, Profesión, Ingresos, Altura, Cabello, Ojos)
+    -> ;
+ERROR 1054 (42S22): Unknown column 'Profesión' in 'field list'
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, Nacimiento, EstadoCivil, Hijos, Desempleado, Profesion, Ingresos, Altura, Cabello, Ojos)
+    -> ;
+ERROR 1292 (22007): Incorrect date value: '20/03/1964' for column 'Nacimiento' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, @Nacimiento, EstadoCivil, Hijos, Desempleado, Profesion, Ingresos, Altura, Cabello, Ojos)
+
+    -> set Nacimiento = str_to_date(@Nacimiento,'%d/%m/%Y' )
+    -> ;
+ERROR 1366 (HY000): Incorrect integer value: 'FALSE' for column 'Desempleado' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, @Nacimiento, EstadoCivil, Hijos, Desempleado, Profesion, Ingresos, Altura, Cabello, Ojos)
+
+    -> set Nacimiento = str_to_date(@Nacimiento,'%d/%m/%Y' ),
+    ->  Desempleado = if(@Desempleado = "FALSE", 0, 1)
+    -> ;
+ERROR 1366 (HY000): Incorrect integer value: 'FALSE' for column 'Desempleado' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, @Nacimiento, EstadoCivil, Hijos, Desempleado, Profesion, Ingresos, Altura, Cabello, Ojos)
+
+    -> set Nacimiento = str_to_date(@Nacimiento,'%d/%m/%Y' ),
+    ->  Desempleado = if(@Desempleado = "FALSE", 0, 1)
+    -> ;
+ERROR 1366 (HY000): Incorrect integer value: 'FALSE' for column 'Desempleado' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, @Nacimiento, EstadoCivil, Hijos, @Desempleado, Profesion, Ingresos, Altura, Cabello, Ojos)
+    -> set Nacimiento = str_to_date(@Nacimiento,'%d/%m/%Y' ),
+    ->  Desempleado = if(@Desempleado = "FALSE", 0, 1)
+    -> ;
+ERROR 1265 (01000): Data truncated for column 'Altura' at row 1
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, @Nacimiento, EstadoCivil, Hijos, @Desempleado, Profesion, Ingresos, @Altura, Cabello, Ojos)
+    -> set Nacimiento = str_to_date(@Nacimiento,'%d/%m/%Y' ),
+    ->  Desempleado = if(@Desempleado = "FALSE", 0, 1),
+    ->     Altura = REPLACE(@Altura, ',', '.')
+    -> ;
+ERROR 1265 (01000): Data truncated for column 'EstadoCivil' at row 6
+mysql> drop table contactos;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE contactos (
+    ->    Id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    ->    Alias VARCHAR(20) NOT NULL,
+    ->    Nombre VARCHAR(25) NOT NULL,
+    ->    Apellidos VARCHAR(50) NOT NULL,
+    ->    Direccion VARCHAR(60) NOT NULL,
+    ->    Poblacion VARCHAR(25) NOT NULL,
+    ->    Telefono CHAR(9) NOT NULL,
+    ->    Movil VARCHAR(15),
+    ->    Email VARCHAR(50),
+    ->    Observaciones TEXT,
+    ->    Sexo ENUM(“Hombre”, “Mujer”) NOT NULL,
+    ->    Nacimiento DATE NOT NULL,
+    ->    EstadoCivil ENUM(“Otros”, “Separado/a”, “Soltero/a”, “Casado/a”, “Divorciado/a”) NOT NULL DEFAULT “Soltero/a”,
+    ->    Hijos TINYINT UNSIGNED DEFAULT 0,
+    ->    Desempleado BOOLEAN NOT NULL,
+    ->    Profesion VARCHAR(30),
+    ->    Ingresos DECIMAL(6,2) NOT NULL DEFAULT 0,
+    ->    Altura FLOAT(3,2) UNSIGNED,
+    ->    Cabello VARCHAR(20) NOT NULL,
+    ->    Ojos VARCHAR(20) NOT NULL
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?Hombre?, ?Mujer?) NOT NULL,
+   Nacimiento DATE NOT NULL,
+   EstadoCivil ENUM(?O' at line 12
+mysql> CREATE TABLE contactos (
+    ->    Id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    ->    Alias VARCHAR(20) NOT NULL,
+    ->    Nombre VARCHAR(25) NOT NULL,
+    ->    Apellidos VARCHAR(50) NOT NULL,
+    ->    Direccion VARCHAR(60) NOT NULL,
+    ->    Poblacion VARCHAR(25) NOT NULL,
+    ->    Telefono CHAR(9) NOT NULL,
+    ->    Movil VARCHAR(15),
+    ->    Email VARCHAR(50),
+    ->    Observaciones TEXT,
+    ->    Sexo ENUM('Hombre', 'Mujer') NOT NULL,
+    ->    Nacimiento DATE NOT NULL,
+    ->    EstadoCivil ENUM('Otros', 'Separado/a', 'Soltero/a', 'Casado/a', 'Divorciado/a') NOT NULL DEFAULT 'Soltero/a',
+    ->    Hijos TINYINT UNSIGNED DEFAULT 0,
+    ->    Desempleado BOOLEAN NOT NULL,
+    ->    Profesion VARCHAR(30),
+    ->    Ingresos DECIMAL(6,2) NOT NULL DEFAULT 0,
+    ->    Altura FLOAT(3,2) UNSIGNED,
+    ->    Cabello VARCHAR(20) NOT NULL,
+    ->    Ojos VARCHAR(20) NOT NULL
+    -> );
+Query OK, 0 rows affected, 2 warnings (0.03 sec)
+
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, @Nacimiento, EstadoCivil, Hijos, @Desempleado, Profesion, Ingresos, @Altura, Cabello, Ojos)
+    -> set Nacimiento = str_to_date(@Nacimiento,'%d/%m/%Y' ),
+    ->  Desempleado = if(@Desempleado = "FALSE", 0, 1),
+    ->     Altura = REPLACE(@Altura, ',', '.')
+    -> ;
+ERROR 1366 (HY000): Incorrect integer value: '' for column 'Hijos' at row 17
+mysql> describe contactos;
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+| Field         | Type                                                             | Null | Key | Default   | Extra          |
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+| Id            | int                                                              | NO   | PRI | NULL      | auto_increment |
+| Alias         | varchar(20)                                                      | NO   |     | NULL      |                |
+| Nombre        | varchar(25)                                                      | NO   |     | NULL      |                |
+| Apellidos     | varchar(50)                                                      | NO   |     | NULL      |                |
+| Direccion     | varchar(60)                                                      | NO   |     | NULL      |                |
+| Poblacion     | varchar(25)                                                      | NO   |     | NULL      |                |
+| Telefono      | char(9)                                                          | NO   |     | NULL      |                |
+| Movil         | varchar(15)                                                      | YES  |     | NULL      |                |
+| Email         | varchar(50)                                                      | YES  |     | NULL      |                |
+| Observaciones | text                                                             | YES  |     | NULL      |                |
+| Sexo          | enum('Hombre','Mujer')                                           | NO   |     | NULL      |                |
+| Nacimiento    | date                                                             | NO   |     | NULL      |                |
+| EstadoCivil   | enum('Otros','Separado/a','Soltero/a','Casado/a','Divorciado/a') | NO   |     | Soltero/a |                |
+| Hijos         | tinyint unsigned                                                 | YES  |     | 0         |                |
+| Desempleado   | tinyint(1)                                                       | NO   |     | NULL      |                |
+| Profesion     | varchar(30)                                                      | YES  |     | NULL      |                |
+| Ingresos      | decimal(6,2)                                                     | NO   |     | 0.00      |                |
+| Altura        | float(3,2) unsigned                                              | YES  |     | NULL      |                |
+| Cabello       | varchar(20)                                                      | NO   |     | NULL      |                |
+| Ojos          | varchar(20)                                                      | NO   |     | NULL      |                |
++---------------+------------------------------------------------------------------+------+-----+-----------+----------------+
+20 rows in set (0.00 sec)
+
+mysql> load data infile 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\contactos.csv'
+    -> into table contactos
+    -> character set utf8
+    -> fields terminated by ';'
+    -> lines terminated by '\n'
+    -> ignore 1 lines
+    -> (ID, Alias, Nombre, Apellidos, Direccion, Poblacion, Telefono, Movil, Email, Observaciones, Sexo, @Nacimiento, EstadoCivil, @Hijos, @Desempleado, Profesion, Ingresos, @Altura, Cabello, Ojos)
+    -> set Nacimiento = str_to_date(@Nacimiento,'%d/%m/%Y' ),
+    ->  Desempleado = if(@Desempleado = "FALSE", 0, 1),
+    ->     Altura = REPLACE(@Altura, ',', '.'),
+    ->     hijos = if(@Hijos is null, 0, 1)
+    -> ;
+Query OK, 122 rows affected, 1 warning (0.03 sec)
+Records: 122  Deleted: 0  Skipped: 0  Warnings: 1
+
+mysql> select * from contactos;
++-----+-----------------+---------------+-----------------------------+--------------------------------------+-----------+-----------+-----------+--------------------------------+------------------+--------+------------+--------------+-------+-------------+------------------+----------+--------+-----------+----------+
+| Id  | Alias           | Nombre        | Apellidos                   | Direccion
+            | Poblacion | Telefono  | Movil     | Email                          | Observaciones    | Sexo   | Nacimiento | EstadoCivil  | Hijos | Desempleado | Profesion        | Ingresos | Altura | Cabello   | Ojos     |
++-----+-----------------+---------------+-----------------------------+--------------------------------------+-----------+-----------+-----------+--------------------------------+------------------+--------+------------+--------------+-------+-------------+------------------+----------+--------+-----------+----------+
+|   1 | Africa          | ESTEFANIA     | AROCAS PASADAS              | PADRÓ , 109
+            | Zaragoza  | 938205580 | 546212121 | africa@altecom.es              |
+   | Mujer  | 1964-03-20 | Otros        |     1 |           0 | Administrativo/a |  1500.00 |   1.62 | Castaño   | Marrones |
+|   2 | Agata           | QUERALT       | VISO GILABERT               | CASA CORDELLAS ,
+            | Barcelona | 936545115 | 625215452 | agata@hotmail.com              |
+   | Mujer  | 1965-12-13 | Otros        |     1 |           1 | Delineante       |  1100.00 |   1.55 | Negro     | Marrones |
+|   3 | Aguador         | JOAN          | AYALA FERRERAS              | DOCTOR FLEMING , 11                  | Zaragoza  | 938202768 | 649212123 |                                |
+   | Hombre | 1969-07-20 | Otros        |     1 |           0 |                  |  1500.00 |   1.60 | Negro     | Otro     |
+|   4 | Albatros        | JOAN          | BAEZ TEJADO                 | BERTRAND I SERRA , 11, 3R.           | Zaragoza  | 938727844 |           | albatros@wandoo.es             |
+   | Hombre | 1965-07-23 | Separado/a   |     1 |           0 | Contable         |  1900.00 |   1.80 | Otros     | Marrones |
+|   5 | Albert          | MARC          | BASTARDES SOTO              | CARRIÓ , 12, 5È A                    | Tarragona | 938350521 |           | albert@intercom.es             |
+   | Hombre | 1964-10-16 | Soltero/a    |     1 |           0 | Dependiente/a    |  1100.00 |   1.81 | Negro     | Azules   |
+|   6 | Alien           | JOSEP         | ANGUERA VILAFRANCA          | PIRINEUS , 10
+            | Valencia  | 938755645 |           | alien@intercom.es              |
+   | Hombre | 1958-11-16 | Casado/a     |     1 |           0 | Estudiante       |   500.00 |   1.57 | Negro     | Verdes   |
+|   7 | amores          | ESTHER        | PASCUAL ALOY                | JACINT VERDAGUER , 43                | Girona    | 936520547 |           | amores@hotmail.com             |
+   | Mujer  | 1967-03-20 | Divorciado/a |     1 |           0 |                  |  2500.00 |   1.57 | Calvo     | Otro     |
+|   8 | Anabel          | LAURA         | VALLÉS GIRVENT              | NOU , 9, 2N.
+            | Tarragona | 936565656 | 645121212 | anabel@altecom.es              |
+   | Mujer  | 1966-09-17 | Casado/a     |     1 |           1 | Conductor/a      |     0.00 |   1.72 | Pelirrojo | Verdes   |
+|   9 | Antiga          | RAQUEL        | RAYA GARCIA                 | JACINT VERDAGUER , 52, 3R, 1A.       | Barcelona | 936752156 |           | antiga@minorisa.es             |
+   | Mujer  | 1967-10-10 | Casado/a     |     1 |           0 | Oficial          |   800.00 |   1.81 | Rubio     | Azules   |
+|  10 | ballador        | JOAN          | ANDREU CRUZ                 | JOAN MIRÓ , 10
+            | Tarragona | 938300025 | 648221111 | ballador@hotmail.com           |
+   | Hombre | 1960-05-29 | Otros        |     1 |           1 | Recepcionista    |  1200.00 |   1.62 | Castaño   | Otro     |
+|  11 | balladora       | MARIA ISABEL  | BARALDÉS COMAS              | JAUME GALOBART , 12                  | Lleida    | 938385567 | 658444412 | balladora@altecom.es           |
+   | Mujer  | 1968-03-11 | Divorciado/a |     1 |           1 | Diseñador/a      |   800.00 |   1.56 | Otros     | Otro     |
+|  12 | Barbilla        | ADRIÀ         | BERENGUERAS CULLERÉS        | PINTOR SERT , 12, 1R., 1A.           | Valencia  | 937809812 | 654899994 | barbilla@hotmail.com           |
+   | Hombre | 1964-09-23 | Soltero/a    |     1 |           1 | Comercial        |   300.00 |   1.60 | Calvo     | Marrones |
+|  13 | Besugo          | GERARD        | LÓPEZ DE PABLO GARCIA UCEDA | BELLAVISTA , 30
+            | Zaragoza  | 936520741 |           | besugo@minorisa.es             |
+   | Hombre | 1966-01-13 | Divorciado/a |     1 |           0 | Comercial        |   400.00 |   1.87 | Negro     | Otro     |
+|  14 | Bogart          | ELIOT         | ARNAU MORENO                | MONTURIOL , 10, 1R.                  | Girona    | 938202456 |           | bogart@terra.es                |
+   | Hombre | 1957-09-02 | Soltero/a    |     1 |           0 | Asesor/a fiscal  |  3100.00 |   1.82 | Negro     | Negros   |
+|  15 | Bond            | JORDI         | RAYA GAVILAN                | JACINT VERDAGUER , 52, 2N., 4A.      | Lleida    | 938754554 |           | bond@terra.es                  |
+   | Hombre | 1969-07-18 | Casado/a     |     1 |           0 | Arquitecto/a     |  1000.00 |   1.60 | Castaño   | Otro     |
+|  16 | Borreguero      | LLUÍS         | ZAMBUDIO FIGULS             | CASA NOVA ,
+            | Lleida    | 936875544 | 625411320 |                                |
+   | Hombre | 1969-01-30 | Soltero/a    |     1 |           1 |                  |  1100.00 |   1.67 | Rubio     | Verdes   |
+|  17 | Cabeza larga    | LAURA         | BIDAULT CULLERÉS            | DE LA CAÇA , 12, 1R., C              | Valencia  | 935880712 | 690522200 | cabeza larga@cataloniamail.com |
+   | Mujer  | 1967-04-02 | Casado/a     |     1 |           1 | Contable         |   500.00 |   1.87 | Pelirrojo | Negros   |
+|  18 | Caga-novias     | JORDI         | BIOSCA FONTANET             | PINTOR SERT , 12, 2N., 1A.           | Zaragoza  | 936875255 | 647821111 |                                |
+   | Hombre | 1958-09-03 | Otros        |     1 |           0 | Camarero/a       |   600.00 |   1.75 | Calvo     | Azules   |
+|  19 | Calandria       | DOUNYA        | ZAFRA FIGULS                | CASA SARA ,
+            | Tarragona | 936542775 |           |                                |
+   | Mujer  | 1966-05-31 | Separado/a   |     1 |           1 |                  |   400.00 |   1.73 | Otros     | Marrones |
+|  20 | Cangur          | JULIO         | ALEU ICART                  | ARTÈS , 1, 1R, 1A.                   | Barcelona | 938773545 |           | cangur@intercom.es             |
+   | Hombre | 1967-09-21 | Otros        |     1 |           1 | Recepcionista    |  1100.00 |   1.86 | Castaño   | Azules   |
+|  21 | Cantinflas      | ANDREU        | BADIA TORNÉ                 | GENERAL PRIM , 11, 2N.               | Valencia  | 938200022 |           |                                |
+   | Hombre | 1963-02-23 | Separado/a   |     1 |           0 | Recepcionista    |  1000.00 |   1.79 | Rubio     | Verdes   |
+|  22 | Canto           | RAMON         | MORALES GESE                | CAU DE LA GUINEU , 4                 | Tarragona | 936512545 |           |                                |
+   | Hombre | 1958-01-26 | Casado/a     |     1 |           0 | Abogado/a        |  1100.00 |   1.81 | Calvo     | Verdes   |
+|  23 | Caparranas      | DAVID-JESE    | BLANCO FONTANET             | JOAN SANMARTÍ , 12, 2N., 2A.         | Lleida    | 937785655 | 632548744 | caparranas@altecom.es          |
+   | Hombre | 1960-09-23 | Otros        |     1 |           0 |                  |   500.00 |   1.57 | Negro     | Azules   |
+|  24 | Cara corta      | ARAN          | ALVAREZ FERNÁNDEZ           | PROL. PADRÓ , 1, 3R. 1A.             | Madrid    | 938300385 | 632986321 |                                |
+   | Hombre | 1964-09-27 | Soltero/a    |     1 |           0 | Taxista          |  1400.00 |   1.64 | Castaño   | Marrones |
+|  25 | cariñosa        | GEMMA         | GARCIA ALMOGUERA            | SALLENT , 22, 2N.                    | Barcelona | 936520471 | 647111021 |                                |
+   | Mujer  | 1962-03-22 | Soltero/a    |     1 |           0 |                  |  1300.00 |   1.69 | Pelirrojo | Azules   |
+|  26 | Carretero       | IVAN          | LIBORI FIGUERAS             | JOAN MIRÓ , 3
+            | Girona    | 936012445 | 625481111 | carretero@intercom.es          |
+   | Hombre | 1965-07-23 | Divorciado/a |     1 |           0 |                  |   300.00 |   1.56 | Otros     | Otro     |
+|  27 | Cela            | DAVID         | BIDAULT PUEYO               | LLUÍS CASTELLS , 12, 2N.             | Barcelona | 934500611 |           | cela@altecom.es                |
+   | Hombre | 1969-05-13 | Divorciado/a |     1 |           1 | Oficial          |   500.00 |   1.57 | Rubio     | Otro     |
+|  28 | Coco            | XAVIER        | BENITEZ JOSE                | SANT VALENTÍ , 12, 1R.               | Girona    | 937885544 |           | coco@hotmail.com               |
+   | Hombre | 1966-05-17 | Divorciado/a |     1 |           0 | Asesor/a fiscal  |  1100.00 |   1.73 | Rubio     | Azules   |
+|  29 | Conejo          | MARIO         | PASCUAL FLORES              | ÀNGEL GUIMERÀ , 43, 2N               | Girona    | 936512105 |           | conejo@minorisa.es             |
+   | Hombre | 1959-08-02 | Separado/a   |     1 |           0 |                  |   900.00 |   1.75 | Castaño   | Verdes   |
+|  30 | Corcel          | JESUS         | AYALA TORNÉ                 | JAUME GALOBART , 11                  | Girona    | 938202200 |           | corcel@altecom.es              |
+   | Hombre | 1959-01-04 | Separado/a   |     1 |           0 | Dependiente/a    |     0.00 |   1.82 | Negro     | Marrones |
+|  31 | Cuca            | GEMMA         | LISTAN FIGUERAS             | AVINGUDA TRES , 3, 1R., 1A.          | Madrid    | 939965585 |           |                                |
+   | Mujer  | 1968-11-29 | Divorciado/a |     1 |           0 | Arquitecto/a     |   800.00 |   1.81 | Negro     | Negros   |
+|  32 | Curie           | SILVIA        | RASERO GAVILAN              | JACINT VERDAGUER , 52, 2N., 1A.      | Barcelona | 936541235 | 648555214 | curie@minorisa.es              |
+   | Mujer  | 1964-06-14 | Soltero/a    |     1 |           0 |                  |     0.00 |   1.62 | Negro     | Marrones |
+|  33 | Dalí            | ALBERT        | ARNALOT PUIG                | DIPUTACIÓ , 10
+            | Lleida    | 938204054 | 621114452 | dalí@wandoo.es                 |
+   | Hombre | 1969-06-20 | Soltero/a    |     1 |           0 | Profesor/a       |  1200.00 |   1.71 | Pelirrojo | Verdes   |
+|  34 | Diamant         | MARIA         | MOLINER GARRIDO             | VIC , 39, 1R., 2A.                   | Tarragona | 936584541 |           |                                |
+   | Mujer  | 1966-11-21 | Casado/a     |     1 |           1 | Camarero/a       |  2400.00 |   1.73 | Pelirrojo | Azules   |
+|  35 | Dolça           | BERTA         | GALOBART GARCIA             | GERMAN DURAN , 21                    | Zaragoza  | 934111475 |           | dolça@cidet.com                |
+   | Mujer  | 1959-05-17 | Separado/a   |     1 |           0 | Contable         |  1200.00 |   1.71 | Pelirrojo | Negros   |
+|  36 | Dorada          | BERTA         | LÓPEZ GARRIGASSAIT          | BELLAVISTA , 30
+            | Zaragoza  | 935687444 |           | dorada@intercom.es             |
+   | Mujer  | 1965-07-11 | Otros        |     1 |           0 | Administrativo/a |  1400.00 |   1.90 | Otros     | Verdes   |
+|  37 | Elisa           | MIREIA        | SÁNCHEZ GÓMEZ               | NOU , 7, 2N.
+            | Lleida    | 936658711 | 645874112 | elisa@altecom.es               |
+   | Mujer  | 1962-12-09 | Soltero/a    |     1 |           0 | Administrativo/a |  1200.00 |   1.87 | Rubio     | Otro     |
+|  38 | Encarna         | GEMMA         | ALAVEDRA SUNYÉ              | MANELIC , 1
+            | Barcelona | 938773941 | 632125482 | encarna@hotmail.com            |
+   | Mujer  | 1966-03-22 | Casado/a     |     1 |           0 | Dependiente/a    |  1000.00 |   1.89 | Otros     | Negros   |
+|  39 | entesa          | MARIA ISABEL  | ALIGUÉ BONVEHÍ              | DE LA PESCA , 1, 1R., 1A.            | Lleida    | 938305295 |           | entesa@altecom.es              |
+   | Mujer  | 1967-02-22 | Casado/a     |     1 |           1 | Asesor/a fiscal  |     0.00 |   1.83 | Pelirrojo | Otro     |
+|  40 | Entierravivos   | TONI          | MAS FRANCH                  | PIRINEUS , 34
+            | Lleida    | 936524446 | 621445221 |                                |
+   | Hombre | 1969-07-24 | Divorciado/a |     1 |           1 |                  |     0.00 |   1.59 | Otros     | Marrones |
+|  41 | Esportista      | ALEJANDRO     | ALOY COMPTE                 | PROL. JACINT VERDAGUER , 1, 2N., 2A. | Madrid    | 938305551 |           |                                |
+   | Hombre | 1958-08-23 | Divorciado/a |     1 |           0 |                  |  1400.00 |   1.78 | Negro     | Otro     |
+|  42 | ET              | JOAN MARTÍ    | ASENSIO VEGA                | MALLORCA , 11
+            | Zaragoza  | 938206097 |           | et@altecom.es                  |
+   | Hombre | 1957-12-16 | Otros        |     1 |           0 | Taxista          |  1300.00 |   1.72 | Rubio     | Negros   |
+|  43 | Europa          | INGRID        | BIDAULT PÉREZ               | SANT BENET , 12, 2N.                 | Lleida    | 934500644 |           |                                |
+   | Mujer  | 1967-03-20 | Casado/a     |     1 |           0 |                  |  1200.00 |   1.89 | Castaño   | Marrones |
+|  44 | expert          | OLIVER        | ALOY CODINACHS              | PROL. PADRÓ , 1, 2N., 2A.            | Lleida    | 938305594 |           |                                |
+   | Hombre | 1959-04-13 | Otros        |     1 |           0 | Representante    |  1100.00 |   1.66 | Castaño   | Negros   |
+|  45 | experta         | SANDRA        | ALTIMIRAS ARMENTEROS        | ARTÈS , 1, 2N., 2A.                  | Barcelona | 938300422 |           | experta@wandoo.es              |
+   | Mujer  | 1960-01-23 | Separado/a   |     1 |           0 | Camarero/a       |  1100.00 |   1.60 | Calvo     | Verdes   |
+|  46 | F50             | JORDI         | BELMONTE SÁNCHEZ            | JOAN XXIII , 12, 1R, 2A.             | Madrid    | 938350511 | 621455662 | f5@wandoo.es                   |
+   | Hombre | 1966-07-16 | Otros        |     1 |           0 | Enfermero/a      |  1500.00 |   1.74 | Castaño   | Azules   |
+|  47 | Faja Ancha      | MARC          | BAJONA GARCIA               | BERTRAND I SERRA , 11, 3R.           | Zaragoza  | 938727589 |           |                                |
+   | Hombre | 1968-02-25 | Otros        |     1 |           0 |                  |  1300.00 |   1.70 | Rubio     | Verdes   |
+|  48 | Fara            | JORDINA       | AGUILAR RODRIGUEZ           | LA SARDANA , 1
+            | Barcelona | 938208488 |           |                                |
+   | Mujer  | 1962-08-17 | Casado/a     |     1 |           0 | Contable         |   600.00 |   1.59 | Calvo     | Marrones |
+|  49 | Fina            | MARIA JOSÉ    | BARRIGA SOTO                | GALILEU , 12
+            | Tarragona | 938320587 |           | fina@hotmail.com               |
+   | Mujer  | 1961-07-16 | Otros        |     1 |           0 |                  |  1100.00 |   1.87 | Otros     | Negros   |
+|  50 | Fuego           | RAQUEL        | AVILA MASJUAN               | SANT VALENTÍ , 11                    | Girona    | 938203095 | 658954422 | fuego@altecom.es               |
+   | Mujer  | 1964-01-23 | Separado/a   |     1 |           0 | Comercial        |   600.00 |   1.78 | Negro     | Otro     |
+|  51 | Galgo           | ENRIC         | PARRAMON FLORES             | JOAN XXIII , 43
+            | Barcelona | 934555455 |           |                                |
+   | Hombre | 1963-08-29 | Otros        |     1 |           0 | Dependiente/a    |  1000.00 |   1.86 | Castaño   | Otro     |
+|  52 | Garota          | MARTA         | AGUILAR RAMOS               | DE LA PAU , 1
+            | Tarragona | 938208502 |           | garota@hotmail.com             |
+   | Mujer  | 1961-02-19 | Separado/a   |     1 |           0 | Recepcionista    |   400.00 |   1.65 | Otros     | Otro     |
+|  53 | gata            | CARLA         | AYALA ALSINA                | SANT ANTONI MARIA CLARET , 11        | Zaragoza  | 938205245 |           |                                |
+   | Mujer  | 1959-04-20 | Casado/a     |     1 |           0 | Administrativo/a |   800.00 |   1.73 | Otros     | Verdes   |
+|  54 | Gateta          | MARIA NOELIA  | ALVAREZ TROYANO             | AVINGUDA TRES , 1, 3R., 1A.          | Tarragona | 938300374 |           | gateta@cataloniamail.com       |
+   | Mujer  | 1964-10-20 | Divorciado/a |     1 |           0 | Enfermero/a      |  1200.00 |   1.56 | Rubio     | Azules   |
+|  55 | Gioconda        | CRISTINA      | ALINS GONZÁLEZ              | PROL. PADRÓ , 1, 2N., 1A.            | Barcelona | 938305576 | 652148555 |                                |
+   | Mujer  | 1960-03-27 | Soltero/a    |     1 |           0 |                  |  1200.00 |   1.67 | Negro     | Azules   |
+|  56 | Groucho         | CARLOS        | ACUÑA TORT                  | SANT JOAN , 0, C, 3R. A              | Valencia  | 938208614 |           | groucho@intercom.es            |
+   | Hombre | 1960-09-09 | Divorciado/a |     1 |           0 |                  |  1000.00 |   1.82 | Rubio     | Negros   |
+|  57 | Harpo           | DAVID         | ALGUÉ TRANCHO               | PROL. JACINT VERDAGUER , 1, 1R., 1A. | Madrid    | 938770077 |           | harpo@hotmail.com              |
+   | Hombre | 1966-11-03 | Soltero/a    |     1 |           1 | Funcionario/a    |  3000.00 |   1.70 | Castaño   | Marrones |
+|  58 | Hispa           | CRISTIAN      | BADIA CASTILLO              | JOAN XXIII , 11, 1R., 1A.            | Girona    | 938200713 |           | hispa@cataloniamail.com        |
+   | Hombre | 1960-02-23 | Soltero/a    |     1 |           0 | Oficial          |   300.00 |   1.70 | Rubio     | Marrones |
+|  59 | Hojalatero      | JULIO ALBERTO | BENITEZ FLORES              | LLUÍS CASTELLS , 12, 1R.             | Barcelona | 938270685 | 625477881 |                                |
+   | Hombre | 1962-10-20 | Soltero/a    |     1 |           0 | Representante    |   300.00 |   1.65 | Negro     | Negros   |
+|  60 | Huevo           | SERGI         | TORRUELLA GARCIA            | PADRÓ , 83
+            | Zaragoza  | 936021048 |           | huevo@terra.es                 |
+   | Hombre | 1969-05-26 | Casado/a     |     1 |           0 | Estudiante       |   400.00 |   1.79 | Negro     | Verdes   |
+|  61 | James Dean      | ALEIX         | ALBERICH RODRIGUEZ          | SANT ISCLE , 1
+            | Tarragona | 938773933 | 648555552 | james dean@intercom.es         |
+   | Hombre | 1966-05-12 | Divorciado/a |     1 |           0 |                  |   500.00 |   1.70 | Calvo     | Negros   |
+|  62 | Jéssica         | VERÒNICA      | ARMENCOT PUIG               | MONTSERRAT , 10
+            | Zaragoza  | 938206766 | 690254111 | jéssica@hotmail.com            |
+   | Mujer  | 1960-08-30 | Soltero/a    |     1 |           0 | Camarero/a       |  1000.00 |   1.84 | Calvo     | Azules   |
+|  63 | Julia           | MARIONA       | ALIGUÉ RIVERA               | PROL. JACINT VERDAGUER , 1, 1R., 2A. | Zaragoza  | 938305223 |           |                                |
+   | Mujer  | 1962-06-02 | Soltero/a    |     1 |           0 | Oficial          |   700.00 |   1.81 | Calvo     | Azules   |
+|  64 | Julio           | MARC          | BARRIGA RIU                 | TRABUCAIRES , 12
+            | Zaragoza  | 938325565 |           |                                |
+   | Hombre | 1959-08-02 | Divorciado/a |     1 |           0 | Comercial        |  1400.00 |   1.81 | Rubio     | Negros   |
+|  65 | Lali            | GEMMA         | PORTELLA GISPETS            | JACINT VERDAGUER , 49, 4T., 2A.      | Girona    | 936565448 | 632587441 |                                |
+   | Mujer  | 1966-09-06 | Soltero/a    |     1 |           1 | Diseñador/a      |  1500.00 |   1.56 | Otros     | Marrones |
+|  66 | libero          | RICARD        | AGUILERA BAENA              | MANELIC , 1
+            | Madrid    | 938208360 |           |                                |
+   | Hombre | 1963-02-20 | Otros        |     1 |           0 |                  |  1500.00 |   1.74 | Negro     | Verdes   |
+|  67 | Llus            | JUAN          | RODRIGUEZ GARCÍA            | VERGE DE FÀTIMA , 6, BX., 2A.        | Madrid    | 936549889 | 602412052 | llus@hotmail.com               |
+   | Hombre | 1962-07-20 | Otros        |     1 |           0 | Dependiente/a    |   500.00 |   1.60 | Calvo     | Otro     |
+|  68 | Loli            | MARTA         | AGUILAR SUNYÉ               | SANT JOAN , 0, D, 3R. A              | Tarragona | 938208677 |           |                                |
+   | Mujer  | 1960-11-27 | Casado/a     |     1 |           0 |                  |     0.00 |   1.73 | Calvo     | Verdes   |
+|  69 | Madonna         | NATÀLIA       | BARRIGA TARDÀ               | GALILEU , 12
+            | Madrid    | 938325558 |           | madonna@wandoo.es              |
+   | Mujer  | 1959-11-18 | Otros        |     1 |           0 | Delineante       |  1100.00 |   1.86 | Calvo     | Otro     |
+|  70 | Mata Hari       | MARTA         | BARCONS LARA                | ESPORTS , 12
+            | Barcelona | 938360281 |           | mata hari@intercom.es          |
+   | Mujer  | 1968-10-25 | Otros        |     1 |           0 | Comercial        |  3000.00 |   1.88 | Otros     | Otro     |
+|  71 | Melanie         | LAURA         | AGUILERA TATJÉ              | JOSEP BOIXADERAS , 1                 | Valencia  | 938208380 | 625411014 | melanie@minorisa.es            |
+   | Mujer  | 1963-02-10 | Otros        |     1 |           0 |                  |   700.00 |   1.89 | Castaño   | Azules   |
+|  72 | Melquíades      | JOAN          | ALEU PRAT                   | CERVANTES , 1, 1R.                   | Girona    | 938770878 |           | melquíades@hotmail.com         |
+   | Hombre | 1969-02-02 | Otros        |     1 |           0 |                  |  1500.00 |   1.83 | Calvo     | Azules   |
+|  73 | Merche          | ALEXIA        | VALLÉS GIRVENT              | CERVANTES , 9, 1R.                   | Valencia  | 936874511 | 654822414 | merche@terra.es                |
+   | Mujer  | 1964-03-16 | Soltero/a    |     1 |           1 | Contable         |   600.00 |   1.67 | Calvo     | Azules   |
+|  74 | Midas           | FERRAN        | MOLINA GARRIDO              | JOAN XXIII , 39
+            | Girona    | 936548745 | 698774444 | midas@cataloniamail.com        |
+   | Hombre | 1964-06-21 | Soltero/a    |     1 |           1 | Dependiente/a    |   500.00 |   1.81 | Calvo     | Otro     |
+|  75 | Mona lisa       | CRISTINA      | ARISSA HERMOSO              | DOCTOR BARNARD , 10                  | Tarragona | 938755512 | 602111254 | mona lisa@minorisa.es          |
+   | Mujer  | 1957-11-19 | Soltero/a    |     1 |           0 |                  |  1000.00 |   1.74 | Castaño   | Azules   |
+|  76 | Moro            | JOSÉ ANTONIO  | BARALDÉS PARDO              | ESPORTS , 12
+            | Barcelona | 938722096 |           | moro@minorisa.es               |
+   | Hombre | 1966-11-30 | Separado/a   |     1 |           0 | Asesor/a fiscal  |  1500.00 |   1.59 | Calvo     | Otro     |
+|  77 | Mozart          | JORDI         | SUAREZ GARZÓN               | DE LA PAU , 8
+            | Valencia  | 934512544 |           | mozart@wandoo.es               |
+   | Hombre | 1960-09-03 | Soltero/a    |     1 |           0 | Taxista          |  1600.00 |   1.85 | Castaño   | Negros   |
+|  78 | Nadadora        | BEGONYA       | ARPA MORENO                 | SANT VALENTÍ , 11                    | Lleida    | 938205011 |           |                                |
+   | Mujer  | 1964-10-28 | Otros        |     1 |           0 | Dependiente/a    |   800.00 |   1.80 | Castaño   | Verdes   |
+|  79 | Nalga           | INGRID        | ALOY FARRANDO               | PROL. PADRÓ , 1, 2N., 2A.            | Barcelona | 938300864 |           |                                |
+   | Mujer  | 1959-04-14 | Separado/a   |     1 |           0 | Representante    |     0.00 |   1.82 | Pelirrojo | Otro     |
+|  80 | Napoleon        | MIQUEL        | LUQUE GARRIGASAIT           | VIC , 30 (TORROELLA)                 | Lleida    | 933256844 | 625401445 | napoleon@cidet.com             |
+   | Hombre | 1967-09-20 | Divorciado/a |     1 |           0 | Taxista          |  1000.00 |   1.64 | Rubio     | Azules   |
+|  81 | Orondo          | AGUSTÍ        | RIDÓ GÓMEZ                  | SANT ISCLE , 6
+            | Tarragona | 936528779 |           | orondo@altecom.es              |
+   | Hombre | 1966-05-24 | Casado/a     |     1 |           0 | Contable         |  1000.00 |   1.59 | Pelirrojo | Negros   |
+|  82 | Papagayo        | ANTONI        | SANTAMARIA FLOTATS          | JAUME BALMES , 70, 3R, 1A.           | Girona    | 931021886 |           | papagayo@altecom.es            |
+   | Hombre | 1967-05-31 | Soltero/a    |     1 |           1 | Profesor/a       |   400.00 |   1.84 | Otros     | Otro     |
+|  83 | Paseante        | JOAN          | HERMS GÓMEZ                 | GERMAN DURAN , 27, 3R., 1A.          | Zaragoza  | 936201457 | 658955442 |                                |
+   | Hombre | 1958-10-21 | Divorciado/a |     1 |           0 | Camarero/a       |     0.00 |   1.71 | Pelirrojo | Otro     |
+|  84 | Pasión          | MÒNICA        | ARTIGAS MATURANO            | SANT JOAN , 11
+            | Lleida    | 938207515 |           | pasión@altecom.es              |
+   | Mujer  | 1959-10-03 | Separado/a   |     1 |           0 | Funcionario/a    |  1400.00 |   1.86 | Otros     | Otro     |
+|  85 | Pato            | GERARD        | AGUILAR MASANA              | PUIG , 1
+            | Madrid    | 938208558 |           |                                |
+   | Hombre | 1961-05-23 | Casado/a     |     1 |           0 | Arquitecto/a     |   300.00 |   1.84 | Rubio     | Marrones |
+|  86 | Pelusa          | GEMMA         | ALTIMIRAS SERAROLS          | PROL. JACINT VERDAGUER , 1, 2N., 2A. | Valencia  | 938300496 |           | pelusa@hotmail.com             |
+   | Mujer  | 1961-01-16 | Casado/a     |     1 |           0 | Funcionario/a    |  1300.00 |   1.76 | Calvo     | Azules   |
+|  87 | Perla           | MARIA         | TORRESCASANA GARCIA         | RAMON I CAJAL , 81, 2N.              | Lleida    | 930120545 | 625458445 | perla@cataloniamail.com        |
+   | Mujer  | 1957-10-29 | Divorciado/a |     1 |           0 | Asesor/a fiscal  |  4000.00 |   1.77 | Pelirrojo | Negros   |
+|  88 | Picasso         | ORIOL         | ARIZA PUIGBÓ                | MORAGUES , 10
+            | Girona    | 938207095 |           |                                | Ex-presidiario   | Hombre | 1967-12-05 | Casado/a     |     1 |           1 | Dependiente/a    |   900.00 |   1.70 | Negro     | Negros   |
+|  89 | poma            | VIRGINIA      | ALVAREZ ARMENTEROS          | PROL. PADRÓ , 1, 3R., 2A.            | Barcelona | 938300214 |           |                                |
+   | Mujer  | 1965-10-30 | Separado/a   |     1 |           0 | Conductor/a      |     0.00 |   1.82 | Negro     | Marrones |
+|  90 | Psicosis        | DAMIÀ         | BARALDÉS TARRAGÓ            | FRANCESC DE VITÒRIA , 11, 4T 2A      | Tarragona | 938727244 | 625410101 | psicosis@intercom.es           |
+   | Hombre | 1969-05-19 | Divorciado/a |     1 |           1 | Camarero/a       |  1600.00 |   1.64 | Castaño   | Negros   |
+|  91 | Quince centimos | VALENTÍ       | GARCIA GARCÍA               | ALBÉNIZ , 22, 2N.                    | Barcelona | 936565874 |           |                                | Mucha discreción | Hombre | 1964-07-14 | Separado/a   |    1 |           0 | Camarero/a       |   400.00 |   1.65 | Otros     | Azules   |
+|  92 | Rebeca          | AINA          | AROCA GÓMEZ                 | TRES ROURES , 10, 4T 2A              | Tarragona | 938205782 | 632514125 | rebeca@cataloniamail.com       |
+   | Mujer  | 1964-01-29 | Separado/a   |     1 |           0 |                  |   500.00 |   1.75 | Pelirrojo | Otro     |
+|  93 | Rebelde         | DAVID         | ALONSO RODRIGUEZ            | PROL. PADRÓ , 1, 2N., 1A.            | Girona    | 938305551 |           | rebelde@intercom.es            |
+   | Hombre | 1958-03-23 | Divorciado/a |     1 |           0 |                  |  1500.00 |   1.73 | Calvo     | Verdes   |
+|  94 | Recio           | GERARD        | CANO GÓMEZ                  | ALBÉNIZ , 13, 2N., 1A.               | Zaragoza  | 936577225 |           |                                |
+   | Hombre | 1966-11-04 | Otros        |     1 |           0 | Asesor/a fiscal  |  1200.00 |   1.72 | Otros     | Verdes   |
+|  95 | Recital         | MARTA         | ALCAIDE MOLINA              | FONT DEL GAT , 1
+            | Lleida    | 938773647 | 632544145 |                                | Persona Pública  | Mujer  | 1967-07-17 | Separado/a   |     1 |           0 | Camarero/a       |   400.00 |   1.72 | Castaño   | Marrones |
+|  96 | Rene            | MIREIA        | AGUILERA PRAT               | MONTCAU , 1
+            | Lleida    | 938208054 |           | rene@intercom.es               |
+   | Mujer  | 1966-02-16 | Soltero/a    |     1 |           1 |                  |   600.00 |   1.57 | Negro     | Marrones |
+|  97 | Repicó          | ELOI          | ALAPONT ICART               | MONTURIOL , 1
+            | Lleida    | 938208054 | 658789875 |                                |
+   | Hombre | 1966-03-09 | Soltero/a    |     1 |           1 |                  |  1300.00 |   1.61 | Rubio     | Marrones |
+|  98 | Rica            | ANNA          | RIVERO FLORIDO              | VILATORRADA , 6
+            | Valencia  | 930712563 | 654112144 | rica@terra.es                  | La trae su madre | Mujer  | 1969-03-23 | Casado/a     |     1 |           0 | Comercial        |   700.00 |   1.84 | Otros     | Marrones |
+|  99 | Rockera         | ALBA          | AVILA MASJUAN               | JAUME GALOBART , 11                  | Valencia  | 938204078 |           | rockera@terra.es               |
+   | Mujer  | 1957-09-22 | Otros        |     1 |           0 | Camarero/a       |   500.00 |   1.57 | Otros     | Negros   |
+| 100 | Roma            | SANDRA        | GRANADOS ANDRÉS             | SANT GENÍS , 25
+            | Barcelona | 936871045 |           |                                | Mucha discreción | Mujer  | 1961-11-15 | Divorciado/a |     1 |           0 | Camarero/a       |  1500.00 |   1.61 | Calvo     | Marrones |
+| 101 | Roman           | ERIC          | FERRER GASSET               | VERGE DE FÀTIMA , 2, 3R., 1A.        | Valencia  | 938745211 |           | roman@wandoo.es                |
+   | Hombre | 1960-04-15 | Otros        |     1 |           0 | Recepcionista    |  1400.00 |   1.68 | Castaño   | Negros   |
+| 102 | Romario         | LLUÍS         | AMIGO MODREGO               | JAUME I , 10
+            | Zaragoza  | 938300065 | 654401401 |                                |
+   | Hombre | 1965-11-18 | Divorciado/a |     1 |           0 | Comercial        |   700.00 |   1.75 | Rubio     | Azules   |
+| 103 | Romeo           | CRISTIAN      | ABDIN TATJÈ                 | SANT JOAN , 0, C, 1R., B             | Girona    | 938208674 |           | romeo@intercom.es              |
+   | Hombre | 1959-12-08 | Casado/a     |     1 |           0 | Asesor/a fiscal  |  1100.00 |   1.63 | Calvo     | Marrones |
+| 104 | Romesco         | GUILLEM       | CANELLAS GOMEZ              | JACINT VERDAGUER , 13                | Zaragoza  | 930214054 |           |                                |
+   | Hombre | 1967-03-30 | Separado/a   |     1 |           0 | Administrativo/a |   400.00 |   1.87 | Calvo     | Verdes   |
+| 105 | RONC            | DIMAS         | HIDALGO ALTIMIRAS           | SANT BENET , 28, 2N., 2A.            | Barcelona | 936521404 | 602120214 | ronc@cataloniamail.com         |
+   | Hombre | 1964-07-14 | Otros        |     1 |           1 |                  |  1400.00 |   1.61 | Rubio     | Marrones |
+| 106 | Sabrosa         | ANA INÉS      | BASTARDAS FRANCH            | FONERIA , 12
+            | Zaragoza  | 938350593 |           | sabrosa@hotmail.com            |
+   | Mujer  | 1962-01-03 | Casado/a     |     1 |           0 | Abogado/a        |  1400.00 |   1.82 | Negro     | Marrones |
+| 107 | Salsa           | IVET          | ABADIAS MASANA              | ALFONS XII , 9, 4T 1A                | Zaragoza  | 939962045 | 622101451 | salsa@cataloniamail.com        |
+   | Mujer  | 1959-05-22 | Casado/a     |     1 |           0 | Camarero/a       |  1100.00 |   1.55 | Castaño   | Azules   |
+| 108 | sandra          | JÚLIA         | AREVALO SANCHEZ             | JAUME I , 10
+            | Valencia  | 938755603 | 654874412 |                                |
+   | Mujer  | 1968-09-17 | Casado/a     |     1 |           0 | Recepcionista    |  1300.00 |   1.59 | Castaño   | Marrones |
+| 109 | Sha             | DANIEL        | ALINS MULET                 | DE LA PESCA , 1, 1R., 2A.            | Barcelona | 938305524 | 610025001 |                                | Mucha discreción | Hombre | 1958-03-02 | Casado/a     |    1 |           0 | Conductor/a      |   700.00 |   1.60 | Rubio     | Verdes   |
+| 110 | Sincer          | ABEL          | GARCIA GONZÁLEZ             | PIRINEUS , 22
+            | Valencia  | 936571974 |           | sincer@altecom.es              |
+   | Hombre | 1967-07-30 | Soltero/a    |     1 |           1 | Camarero/a       |  1600.00 |   1.89 | Pelirrojo | Azules   |
+| 111 | Sincera         | IRENE         | ALVAREZ PARCERISA           | PROL. JACINT VERDAGUER , 1, 3R., 2A. | Girona    | 938300036 |           | sincera@hotmail.com            |
+   | Mujer  | 1965-07-20 | Divorciado/a |     1 |           1 |                  |   300.00 |   1.66 | Otros     | Azules   |
+| 112 | suau            | ADRIÀ         | CASAS ANDRÉS                | JAUME GALOBART , 14                  | Madrid    | 936505455 |           | suau@hotmail.com               |
+   | Hombre | 1959-09-01 | Separado/a   |     1 |           0 |                  |  1300.00 |   1.84 | Castaño   | Negros   |
+| 113 | Superman        | JAIRO         | MORALES GESE                | SANT JOAN, EDIFICI D , 3R A          | Barcelona | 936587454 | 600541125 | superman@altecom.es            |
+   | Hombre | 1963-05-15 | Separado/a   |     1 |           0 | Funcionario/a    |  1300.00 |   1.78 | Pelirrojo | Negros   |
+| 114 | Superwoman      | CRISTINA      | BARALDÉS MARTORELL          | VIC , 119, 3R., 2A.                  | Valencia  | 938725845 |           | superwoman@wandoo.es           |
+   | Mujer  | 1963-10-30 | Soltero/a    |     1 |           0 | Conductor/a      |  1500.00 |   1.86 | Calvo     | Azules   |
+| 115 | Tablon          | DAVID         | AROCA GÓMEZ                 | CARLES BUÏGAS , 10, 1R., 1A.         | Barcelona | 938205730 |           | tablon@hotmail.com             | Mucha discreción | Hombre | 1957-10-23 | Casado/a     |    1 |           0 | Recepcionista    |   900.00 |   1.83 | Otros     | Negros   |
+| 116 | tendre          | ADRIÀ         | RUEDA ALVAREZ               | JAUME BALMES , 67, 2N.               | Madrid    | 936828258 |           | tendre@terra.es                |
+   | Hombre | 1961-12-25 | Otros        |     1 |           0 |                  |  1500.00 |   1.71 | Pelirrojo | Verdes   |
+| 117 | Teta            | LUCIA         | ALVAREZ DOMENECH            | PROL. PADRÓ , 1, 3R., 2A.            | Valencia  | 938300045 |           | teta@intercom.es               |
+   | Mujer  | 1968-11-13 | Casado/a     |     1 |           0 | Administrativo/a |   400.00 |   1.58 | Otros     | Otro     |
+| 118 | Tomasa          | CARLA         | BOIX GONZÁLEZ               | DE LA CAÇA , 12, 2N., C              | Tarragona | 936521452 | 624487554 | tomasa@hotmail.com             |
+   | Mujer  | 1963-05-29 | Casado/a     |     1 |           0 |                  |   700.00 |   1.55 | Castaño   | Marrones |
+| 119 | Tranquil        | ADRIÀ         | BARALDÉS MONRÓS             | VIC , 119, 2N., 1A.                  | Valencia  | 938725885 |           |                                |
+   | Hombre | 1968-01-12 | Divorciado/a |     1 |           1 | Funcionario/a    |  1100.00 |  11.58 | Calvo     | Marrones |
+| 120 | Tremenda        | MARTA         | AGUILERA MERINO             | MORAGUES , 1
+            | Valencia  | 938208303 | 621145584 | tremenda@altecom.es            |
+   | Mujer  | 1964-09-27 | Separado/a   |     1 |           0 | Comercial        |     0.00 |   1.77 | Pelirrojo | Otro     |
+| 121 | Tripa           | MARC          | BAREA D'HAENE               | TRABUCAIRES , 12
+            | Valencia  | 938360213 |           | tripa@intercom.es              |
+   | Hombre | 1958-05-07 | Casado/a     |     1 |           0 | Administrativo/a |  1600.00 |   1.58 | Pelirrojo | Marrones |
+| 122 | Verruga         | ALEX          | BARROSO D'HAENE             | FONERIA , 12
+            | Valencia  | 938320537 |           | verruga@hotmail.com            |
+   | Hombre | 1961-09-13 | Divorciado/a |     1 |           0 | Administrativo/a |   700.00 |   1.65 | Calvo     | Verdes   |
++-----+-----------------+---------------+-----------------------------+--------------------------------------+-----------+-----------+-----------+--------------------------------+------------------+--------+------------+--------------+-------+-------------+------------------+----------+--------+-----------+----------+
+122 rows in set (0.01 sec)
+
+mysql>

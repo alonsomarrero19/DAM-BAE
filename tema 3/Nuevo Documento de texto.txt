@@ -1,0 +1,10 @@
+entidad debil // doble linea se necesita la existencia de otra entidad
+relaciones // expresa una asociacion entre ocurrencias de entidad
+	Pueden tener o no tener atributos
+	Grado // se denomidna grado de una relacion al numero de entidades que relaciona
+		Binaria // dos grupos
+		Ternaria // tres grupos
+	Puede ser doble 
+	Puede ser reflexiva
+	Es importante el rol o el papel que juega una entidad en una relacion 
+Participacion // la participacion de una ocurrencia de una entidad , indica, mediandte una pareja de numeros, el minimo y el maximo de de veces que aparece en la relacion asociada a otra ocurrencia de entidad

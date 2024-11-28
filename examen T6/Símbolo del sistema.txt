@@ -1,0 +1,98 @@
+Microsoft Windows [Versión 10.0.22631.3235]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\alons>mysqldump
+Usage: mysqldump [OPTIONS] database [tables]
+OR     mysqldump [OPTIONS] --databases [OPTIONS] DB1 [DB2 DB3...]
+OR     mysqldump [OPTIONS] --all-databases [OPTIONS]
+For more options, use mysqldump --help
+
+C:\Users\alons>mysqldump -u root -p controlt6 > backup.sql
+Enter password: *************************
+
+C:\Users\alons>dir
+ El volumen de la unidad C no tiene etiqueta.
+ El número de serie del volumen es: B0CD-BAF9
+
+ Directorio de C:\Users\alons
+
+15/03/2024  10:08    <DIR>          .
+21/08/2023  22:34    <DIR>          ..
+19/09/2023  13:22    <DIR>          .afirma
+28/10/2023  21:26               157 .bash_history
+20/10/2023  11:35    <DIR>          .cache
+26/02/2024  08:55                53 .git-for-windows-updater
+26/02/2024  08:55               548 .gitconfig
+24/11/2023  15:10    <DIR>          .nbi
+11/03/2024  11:50               176 .packettracer
+22/02/2024  07:49    <DIR>          .thumbnails
+12/03/2024  08:49    <DIR>          .VirtualBox
+28/09/2023  07:40    <DIR>          .vscode
+21/08/2023  23:25    <DIR>          ansel
+15/03/2024  10:08            12.922 backup.sql
+11/03/2024  12:23    <DIR>          Cisco Packet Tracer 8.2.0
+21/08/2023  22:30    <DIR>          Contacts
+13/03/2024  09:34            26.075 copia_tema6practica3.sql
+21/02/2024  10:15    <DIR>          Documents
+15/03/2024  08:59    <DIR>          Downloads
+18/10/2023  21:16    <DIR>          Escritorio
+21/08/2023  22:30    <DIR>          Favorites
+22/08/2023  11:32    <DIR>          Intel
+21/08/2023  22:30    <DIR>          Links
+21/08/2023  22:30    <DIR>          Music
+22/08/2023  20:26    <DIR>          OneDrive
+28/10/2023  16:43    <DIR>          pseint
+21/08/2023  22:30    <DIR>          Saved Games
+21/08/2023  22:40    <DIR>          Searches
+25/08/2023  13:35    <DIR>          Tracing
+22/08/2023  23:00    <DIR>          Videos
+21/11/2023  09:00    <DIR>          VirtualBox VMs
+10/11/2023  20:24    <DIR>          Zomboid
+               6 archivos         39.931 bytes
+              26 dirs  250.882.703.360 bytes libres
+
+C:\Users\alons>mysqldump -u root -p controlt6 > backup.sql
+Enter password: *************************
+
+C:\Users\alons>dir
+ El volumen de la unidad C no tiene etiqueta.
+ El número de serie del volumen es: B0CD-BAF9
+
+ Directorio de C:\Users\alons
+
+15/03/2024  10:08    <DIR>          .
+21/08/2023  22:34    <DIR>          ..
+19/09/2023  13:22    <DIR>          .afirma
+28/10/2023  21:26               157 .bash_history
+20/10/2023  11:35    <DIR>          .cache
+26/02/2024  08:55                53 .git-for-windows-updater
+26/02/2024  08:55               548 .gitconfig
+24/11/2023  15:10    <DIR>          .nbi
+11/03/2024  11:50               176 .packettracer
+22/02/2024  07:49    <DIR>          .thumbnails
+12/03/2024  08:49    <DIR>          .VirtualBox
+28/09/2023  07:40    <DIR>          .vscode
+21/08/2023  23:25    <DIR>          ansel
+15/03/2024  10:26            12.922 backup.sql
+11/03/2024  12:23    <DIR>          Cisco Packet Tracer 8.2.0
+21/08/2023  22:30    <DIR>          Contacts
+13/03/2024  09:34            26.075 copia_tema6practica3.sql
+21/02/2024  10:15    <DIR>          Documents
+15/03/2024  08:59    <DIR>          Downloads
+18/10/2023  21:16    <DIR>          Escritorio
+21/08/2023  22:30    <DIR>          Favorites
+22/08/2023  11:32    <DIR>          Intel
+21/08/2023  22:30    <DIR>          Links
+21/08/2023  22:30    <DIR>          Music
+22/08/2023  20:26    <DIR>          OneDrive
+28/10/2023  16:43    <DIR>          pseint
+21/08/2023  22:30    <DIR>          Saved Games
+21/08/2023  22:40    <DIR>          Searches
+25/08/2023  13:35    <DIR>          Tracing
+22/08/2023  23:00    <DIR>          Videos
+21/11/2023  09:00    <DIR>          VirtualBox VMs
+10/11/2023  20:24    <DIR>          Zomboid
+               6 archivos         39.931 bytes
+              26 dirs  250.882.863.104 bytes libres
+
+C:\Users\alons>

@@ -1,0 +1,221 @@
+Microsoft Windows [Versión 10.0.22631.3155]
+(c) Microsoft Corporation. Todos los derechos reservados.
+
+C:\Users\Alonso>mysql -u root -p
+Enter password: *************************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.35 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases
+    -> ;
++---------------------+
+| Database            |
++---------------------+
+| information_schema  |
+| intento_de_estudiar |
+| mydb                |
+| mysql               |
+| performance_schema  |
+| sakila              |
+| sys                 |
+| t4p2.1              |
+| t4p2.2              |
+| tema5practica2      |
+| tema5practica3      |
+| tema5practica4      |
+| tema6practica1      |
+| test                |
+| tienda              |
+| world               |
++---------------------+
+16 rows in set (0.00 sec)
+
+mysql> use tema6practica1
+Database changed
+mysql> show tables
+    -> ;
++--------------------------+
+| Tables_in_tema6practica1 |
++--------------------------+
+| fabricante               |
+| producto                 |
++--------------------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO fabricante VALUES(10, 'logitech');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO fabricante (nombre) VALUES( 'logitech');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT INTO producto (codigo, nombre, precio, codigo_fabricante) VALUES(12, 'ratón G705', 94, 10);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> describe fabricante
+    -> ;
++--------+--------------+------+-----+---------+----------------+
+| Field  | Type         | Null | Key | Default | Extra          |
++--------+--------------+------+-----+---------+----------------+
+| codigo | int unsigned | NO   | PRI | NULL    | auto_increment |
+| nombre | varchar(100) | NO   |     | NULL    |                |
++--------+--------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from fabricante
+    -> ;
++--------+-----------------+
+| codigo | nombre          |
++--------+-----------------+
+|      1 | Asus            |
+|      2 | Lenovo          |
+|      3 | Hewlett-Packard |
+|      4 | Samsung         |
+|      5 | Seagate         |
+|      6 | Crucial         |
+|      7 | Gigabyte        |
+|      8 | Huawei          |
+|      9 | Xiaomi          |
+|     10 | logitech        |
+|     11 | logitech        |
++--------+-----------------+
+11 rows in set (0.00 sec)
+
+mysql> Delete * from fabricante where codigo = 11;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from fabricante where codigo = 11' at line 1
+mysql> UPDATE fabricante set nombre = 'LG' where codigo = 11;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from fabricante;
++--------+-----------------+
+| codigo | nombre          |
++--------+-----------------+
+|      1 | Asus            |
+|      2 | Lenovo          |
+|      3 | Hewlett-Packard |
+|      4 | Samsung         |
+|      5 | Seagate         |
+|      6 | Crucial         |
+|      7 | Gigabyte        |
+|      8 | Huawei          |
+|      9 | Xiaomi          |
+|     10 | logitech        |
+|     11 | LG              |
++--------+-----------------+
+11 rows in set (0.00 sec)
+
+mysql> UPDATE fabricante set nombre = 'Logitech' where codigo = 10;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from fabricante;
++--------+-----------------+
+| codigo | nombre          |
++--------+-----------------+
+|      1 | Asus            |
+|      2 | Lenovo          |
+|      3 | Hewlett-Packard |
+|      4 | Samsung         |
+|      5 | Seagate         |
+|      6 | Crucial         |
+|      7 | Gigabyte        |
+|      8 | Huawei          |
+|      9 | Xiaomi          |
+|     10 | Logitech        |
+|     11 | LG              |
++--------+-----------------+
+11 rows in set (0.00 sec)
+
+mysql> INSERT producto (nombre, precio, codigo_fabricante) VALUES('TV 4K OLED', 1601.85, 11):
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ':' at line 1
+mysql> INSERT producto (nombre, precio, codigo_fabricante) VALUES('TV 4K OLED', 1601.85, 11);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from producto;
++--------+---------------------------------+---------+-------------------+
+| codigo | nombre                          | precio  | codigo_fabricante |
++--------+---------------------------------+---------+-------------------+
+|      1 | Disco duro SATA3 1TB            |   86.99 |                 5 |
+|      2 | Memoria RAM DDR4 8GB            |     120 |                 6 |
+|      3 | Disco SSD 1 TB                  |  150.99 |                 4 |
+|      4 | GeForce GTX 1050Ti              |     185 |                 7 |
+|      5 | GeForce GTX 1080 Xtreme         |     755 |                 6 |
+|      6 | Monitor 24 LED Full HD          |     202 |                 1 |
+|      7 | Monitor 27 LED Full HD          |  245.99 |                 1 |
+|      8 | Portátil Yoga 520               |     559 |                 2 |
+|      9 | Portátil Ideapd 320             |     444 |                 2 |
+|     10 | Impresora HP Deskjet 3720       |   59.99 |                 3 |
+|     11 | Impresora HP Laserjet Pro M26nw |     180 |                 3 |
+|     12 | ratón G705                      |      94 |                10 |
+|     13 | TV 4K OLED                      | 1601.85 |                11 |
++--------+---------------------------------+---------+-------------------+
+13 rows in set (0.00 sec)
+
+mysql> CREATE TABLE fabricante_productos(
+    -> nombre_fabricante VARCHAR(100) not null,
+    -> nombre_producto VARCHAR(100) not null,
+    -> precio DOUBLE not null);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables
+    -> ;
++--------------------------+
+| Tables_in_tema6practica1 |
++--------------------------+
+| fabricante               |
+| fabricante_productos     |
+| producto                 |
++--------------------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT fabricante_productos (nombre_fabricante, nombre_producto, precio) SELECT f.nombre, p.nombre, p.precio FROM fabricante f INNER JOIN producto p ON f.codigo = p.codigo_fabricante;
+Query OK, 13 rows affected (0.00 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> delete * from fabricante_producto
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from fabricante_producto' at line 1
+mysql> delete from fabricante_producto
+    ->
+    -> ;
+ERROR 1146 (42S02): Table 'tema6practica1.fabricante_producto' doesn't exist
+mysql> delete from fabricante_productos
+    -> ;
+Query OK, 13 rows affected (0.00 sec)
+
+mysql> select * from fabricante_productos;
+Empty set (0.00 sec)
+
+mysql> INSERT fabricante_productos (nombre_fabricante, nombre_producto, precio)
+    -> SELECT f.nombre,p.nombre, p.precio
+    -> FROM fabricante f
+    -> INNER JOIN producto p
+    -> ON p.codigo = f.asd
+    -> ;
+ERROR 1054 (42S22): Unknown column 'f.asd' in 'on clause'
+mysql> INSERT fabricante_productos (nombre_fabricante, nombre_producto, precio)
+    -> SELECT f.nombre,p.nombre, p.precio
+    -> FROM fabricante f
+    -> INNER JOIN producto p
+    -> ON f.codigo = p.codigo_fabricante;
+Query OK, 13 rows affected (0.00 sec)
+Records: 13  Duplicates: 0  Warnings: 0
+
+mysql> INSERT fabricante_productos (nombre_fabricante, nombre_producto, precio) SELECT f.nombre, p.nombre, p.precio FROM fabricante f INNER JOIN producto p ON f.codigo = p.codigo_fabricante;^C
+mysql> ^C
+mysql> ^C
+mysql> ^C
+mysql> ^C
+mysql> ^C
+mysql> ^C
+mysql>
